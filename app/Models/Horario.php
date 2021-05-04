@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Horario extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['title','color','textcolor','descripcion','start','end'];
+    protected $fillable = ['dia'];
 
 
     public function proyecto(){
-        return $this->hasMany('App\Models\Proyecto','id','proyecto_id');
+        return $this->hasOne('App\Models\Proyecto','id','proyecto_id');
     }
 
 }

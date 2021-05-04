@@ -1,126 +1,147 @@
 @extends('layouts.app')
 
 
-  @section('scripts')
-  <link rel="stylesheet" href="{{ asset('fullcalender/core/main.css')}}">
-  <link rel="stylesheet" href="{{ asset('fullcalender/daygrid/main.css')}}">
-  <link rel="stylesheet" href="{{ asset('fullcalender/list/main.css')}}">
-  <link rel="stylesheet" href="{{ asset('fullcalender/timegrid/main.css')}}">
-  
-
-
-
-
-
-  <script src="{{ asset('fullcalender/core/main.js')}}"></script>
-  <script src="{{ asset('fullcalender/interaction/main.js')}}"></script>
-  <script src="{{ asset('fullcalender/daygrid/main.js')}}"></script>
-  <script src="{{ asset('fullcalender/list/main.js')}}"></script>
-  <script src="{{ asset('fullcalender/timegrid/main.js')}}"></script>
-  <script src="{{ asset('fullcalender/core/locales/es.js')}}"></script>
-
-
-  <script>
-   document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        locale:'es',
-        plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
-        header: {
-          left: 'prev,next today Miboton',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        customButtons:{
-          Miboton:{
-            text:"Botón",
-            click:function(){
-              alert("uwu");
-              $('#exampleModal').modal('toggle');
-            }
-          }
-        },
-        dateClick:function(info){
-          $('#fecha').val(info.dateStr);
-          $('#exampleModal').modal();
-          console.log(info);
-          
-        
-        },
-
-        eventClick:function(info)
-        {
-          console.log(info)
-          console.log(info.event.title);
-          console.log(info.event.start);
-          console.log(info.event.end);
-
-
-          $('#id').val(info.event.id);
-          $('#title').val(info.event.title);
-          $('#color').val(info.event.backgroundcolor);
-          //$('#textColor').val(info.event.id);
-          $('#descripcion').val(info.event.extendedProps.descripcion);
-          $('#fecha').val(info.event.start);
-          $('#hora').val(info.event.start);
-
-          $('#exampleModal').modal();
-          console.log(info);
-
-        },
-        events:"{{ url('/Horarios/show')}}"
-      });
-      calendar.render();
-      $('#btnAgregar').click(function(){
-        ObjEvento = recolectarDatosGUI("POST");
-        EnviarInformacion('',ObjEvento);
-      });
-      function recolectarDatosGUI(method)
-        {
-          nuevoEvento ={
-            id:$('#id').val(),
-            title:$('#title').val(),
-            color:$('#color').val(),
-            textColor:'#FFFFFF',
-            descripcion:$('#descripcion').val(),
-            start:$('#fecha').val()+" "+$('#hora').val(),
-            end:$('#fecha').val()+" "+$('#hora').val(),
-            '_token':$("meta[name='csrf-token']").attr("content"),
-            '_method':method	
-
-          }
-          return (nuevoEvento);
-        }
-
-        function EnviarInformacion(accion,objEvento)
-          {
-            $.ajax(
-              {
-              type:"POST",
-              url:"{{ url('/Horarios') }}"+accion,
-              data:objEvento,
-              success:function(msg){ console.log(msg);},
-              error:function(){ alert("Hay un Error");}
-              }
-            );
-          }
-
-    });
-
-
-  </script>
-
-
-  @endsection
-
- 
 
 @section('content')
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="card-body">
+  <div>
+    <table class="table table-hover"   >
+      <thead>
+        
+      </thead>
+      <tbody>
+        <tr class="table table-sm table-bordered" >
+          
+          <th scope="row"class="bg-success ">Hora</th>
+          <th scope="row"class="bg-success">Lunes</th>
+          <th scope="row"class="bg-success">Martes</th>
+          <th scope="row"class="bg-success">Miercoles</th>
+          <th scope="row"class="bg-success">Jueves</th>
+          <th scope="row"class="bg-success">Viernes</th>
+        </tr>
+        <tr class="table table-sm table-bordered" >
+          <td >8 a.m. - 9 a.m.</td>
+          <td id="celda">
+            @foreach ($horarios as $horario)
+            <ul class="list-group" id="ul">
+              <li class="list-group-item">{{  $horario->dia}}</li>
+             
+            </ul>
+            @endforeach
+            
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="table table-sm table-bordered" >
+          <td>9 a.m. - 10 a.m. </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="table table-sm table-bordered" >
+          <td>10 a.m. - 11 a.m.</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="table table-sm table-bordered" > 
+          <td >11 a.m. - 12 p.m. </th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+      
+        <tr class="table table-sm table-bordered" > 
+          <td >12 p.m. - 1 p.m. </th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+      
+        <tr class="table table-sm table-bordered" > 
+          <td >1 p.m. - 2 p.m. </th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+      
+        <tr class="table table-sm table-bordered" > 
+          <td  >3 p.m. - 4 p.m. </th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="table table-sm table-bordered" > 
+          <td  >4 p.m. - 5 p.m. </th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="table table-sm table-bordered" > 
+          <td  > 5 p.m. - 6 p.m. </th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="table table-sm table-bordered" > 
+          <td  >6 p.m. - 7 p.m. </th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="table table-sm table-bordered" > 
+          <td  >7 p.m. - 8 p.m. </th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="table table-sm table-bordered" > 
+          <td  >8 p.m. - 9 p.m. </th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+      
+      
+      </tbody>
+    </table>
+  
+  </div>
+
+  
+</div>
+</div>
+
+
+<!-- Modal añadir -->
+<div class="modal fade" id="modalID" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -130,78 +151,175 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <!-- title id -->
+
+        <form action="/Horarios" method="post" id="formID">
+          @csrf
+          <!-- Dia -->
           <div class="form-outline mb-4">
-            <label class="form-label" for="id">ID</label>
-            <input type="text" id="id" name="id" class="form-control" />
+            <label class="form-label" for="id">Dia</label>
+            <input type="text" id="dia" name="dia" class="form-control" />
            
           </div>
-          <!-- title input -->
+
+
+          <!-- Proyecto 
           <div class="form-outline mb-4">
-            <label class="form-label" for="title">Titulo</label>
-            <input type="text" id="title" name="title" class="form-control" />
+            <label class="form-label" for="proyecto_id">Proyecto</label>
+            <input type="text" id="proyecto_id" name="proyecto_id" class="form-control" />
            
           </div>
+          -->
           
-          <div class="row">
-            <div class="col">
-              <!-- Fecha input -->
-              <div class="form-outline mb-4">
-                <label class="form-label" for="fecha">Fecha</label>
-                <input type="text" id="fecha" name="fecha" class="form-control" />
-              </div>
-            </div>
-            <div class="col">
-              <!-- Hora input -->
-              <div class="form-outline mb-4">
-                <label class="form-label" for="hora">Hora</label>
-                <input type="text" id="hora" name="hora" class="form-control" />
-              </div>
-            </div>
-          </div>
-         
-         
-        
-          <!-- Descripcion input -->
-          <div class="form-outline mb-4">
-            <label class="form-label" for="descripcion">Descripción</label>
-            <textarea class="form-control" name="descripcion" id="descripcion" rows="4"></textarea>
-          </div>
-          
-            <!-- Colo input -->
-            <div class="form-outline mb-4">
-              <label class="form-label" for="color">Color</label>
-              <input type="color" id="color" name="clor" class="form-control" />
-            </div>
-        
+   
          
         
         
           <!-- Submit button -->
+          <div class="modal-footer">
+        
+            <button id="btnAgregar" name="btnAgregar"  type="submit" class="btn btn-success btn-sm">Agregar</button>
+            <button id="btnModificar" class="btn btn-info btn-sm" >Modificar</button>
+            <button id="btnCencelar" class="btn btn-warning btn-sm" data-dismiss="modal" >Cancelar</button>
+            <button id="btnEliiminar" class="btn btn-danger btn-sm">Eliminar</button>
+            
+          </div>
           
         </form>
       </div>
-      <div class="modal-footer">
-        
-        <button id="btnAgregar"  type="submit" class="btn btn-success btn-sm">Agregar</button>
-        <button id="btnModificar" class="btn btn-info btn-sm" >Modificar</button>
-        <button id="btnCencelar" class="btn btn-warning btn-sm" >Cancelar</button>
-        <button id="btnEliiminar" class="btn btn-danger btn-sm">Eliminar</button>
-        
-      </div>
+     
     </div>
   </div>
 </div>
 
+<!-- Modal Editar -->
+<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Evento Editar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
-<div class="row">
-  <div class="col"></div>
-  <div class="col-7">
-    <div id="calendar"></div>
+        <form  method="PUT" id="formEdit">
+          @csrf
+          @method('PUT')
+          <!-- Dia -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="id">Dia</label>
+            <input type="text" id="dia" name="dia" class="form-control" />
+           
+          </div>
+          <!-- Proyecto 
+          <div class="form-outline mb-4">
+            <label class="form-label" for="proyecto_id">Proyecto</label>
+            <input type="text" id="proyecto_id" name="proyecto_id" class="form-control" />
+           
+          </div>
+          -->
+          
+   
+         
+        
+        
+          <!-- Submit button -->
+          <div class="modal-footer"> 
+        
+            <button id="btnAgregar" name="btnAgregar"  type="submit" class="btn btn-success btn-sm">Actualizar</button>
+            <button id="btnCencelar" class="btn btn-danger btn-sm" >Cancelar</button>
+            
+            
+          </div>
+          
+        </form>
+      </div>
+     
+    </div>
   </div>
-  <div class="col"></div>
 </div>
+<script>
+  $(document).ready(function(){
+    
+    $('#btnModificar').click(function(){
+      $('#modalEdit').modal();
+      
+    });
+    
+    $('#formEdit').on('submit',function(e){
+      e.preventDefault();
+      var id = $('#id').val();
+
+      $.ajax({
+        method: "PUT",
+        url: "/Horarios"+id,
+        data: $('#formEdit').serialize(),
+        success: function(response){
+          console.log(response)
+          $('#modalEdit').modal('hide')
+        
+         
+        },
+        error: function(error){
+          console.log(error)
+        
+          
+         
+        }
+      });
+
+
+   });
+  });
+</script>
+
+   
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+
+
+    $('#celda').click(function(){
+      $('#modalID').modal();
+
+    });
+
+
+
+
+    $('#formID').on('submit',function(e){
+      e.preventDefault();
+
+      $.ajax({
+        method: "POST",
+        url: "/Horarios",
+        data: $('#formID').serialize(),
+        success: function(response){
+          console.log(response)
+          $('#modalID').modal('hide')
+          location.reload();
+         
+        },
+        error: function(error){
+          console.log(error)
+        
+          
+         
+        }
+      });
+    });
+
+    
+  
+    
+  });
+</script>
+
+
 
 
 

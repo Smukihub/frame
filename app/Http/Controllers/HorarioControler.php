@@ -18,8 +18,9 @@ class HorarioControler extends Controller
      */
     public function index()
     {
-        
-        return view('Horarios.index');
+
+       $horarios = Horario::all();
+        return view('Horarios.index')->with('horarios',$horarios);
     }
 
     /**
@@ -40,10 +41,13 @@ class HorarioControler extends Controller
      */
     public function store(Request $request)
     {
-        $datosEvento = request()->except(['_token','_method']);
-        Horario::insert($datosEvento);
+
+        $registro = new Horario();
+        $valores = $request->all();
         
-        print_r($datosEvento);
+        $registro->fill($valores);
+        $registro->save();
+
     }
 
     /**
@@ -65,13 +69,7 @@ class HorarioControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $horario = Horario::find($id);
-        $proyectos = Proyecto::all();
-      
-        return view('Horarios.edit',compact('horario','proyectos'));;
-    }
+ 
 
     /**
      * Update the specified resource in storage.
@@ -80,16 +78,15 @@ class HorarioControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $insertArr = [ 'title' => $request->title,
-        'start' => $request->start,
-        'end' => $request->end
-        ];
-        $booking = Horario::insert($insertArr);
-        return Response::json($booking);
-    }
+        $horarios = $request->all();
 
+       
+        $horarios = Horario::find($id);
+       
+        $horarios->save();
+    }
     /**
      * Remove the specified resource from storage.
      *
