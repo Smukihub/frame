@@ -17,12 +17,6 @@ Route::get('/','InicioControler@inicio');
 Route::get('tablero','InicioControler@tablero');
 Auth::routes();
 
-Route::get('salir','AutenticarControler@salir');
-Route::get('autenticar','AutenticarControler@autenticar');
-Route::get('registrar','AutenticarControler@registrar');
-Route::post('agregar','AutenticarControler@agregar');
-Route::post('validar','AutenticarControler@validar');
-
 Route::resource('Horarios','HorarioControler');
 Route::resource('Proyectos','ProyectoControler');
 Route::resource('Historicos','HistoricoControler');

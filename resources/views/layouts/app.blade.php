@@ -68,7 +68,9 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->nombre }}
                                     @if(Auth::user()->path)
+                                        {{-- 
                                         <img class="image rounded-circle" src="{{asset('/storage/images/'.Auth::user()->path )}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+                                        --}}
                                     @endif
                                 </a>
 
