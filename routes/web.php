@@ -18,6 +18,7 @@ Route::get('tablero','InicioControler@tablero');
 Auth::routes();
 
 Route::resource('Horarios','HorarioControler');
+
 Route::resource('Proyectos','ProyectoControler');
 Route::resource('Historicos','HistoricoControler');
 Route::resource('Usuarios','UserControler');

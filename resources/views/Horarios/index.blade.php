@@ -4,38 +4,31 @@
 
 @section('content')
 
+para el proyecto 3 este sera el horario<br>
+
 
 <div class="card-body">
   <div>
-    <table class="table table-hover"   >
+    <table class="table table-hover table-bordered"  id="tbl-horario" >
       <thead>
-        
-      </thead>
-      <tbody>
-        <tr class="table table-sm table-bordered" >
-          
+        <tr class="table table-sm table-bordered" >        
           <th scope="row"class="bg-success ">Hora</th>
           <th scope="row"class="bg-success">Lunes</th>
           <th scope="row"class="bg-success">Martes</th>
           <th scope="row"class="bg-success">Miercoles</th>
           <th scope="row"class="bg-success">Jueves</th>
           <th scope="row"class="bg-success">Viernes</th>
-        </tr>
-        <tr class="table table-sm table-bordered" >
+        </tr>        
+      </thead>
+      <tbody>
+        <tr aria-hora ="8">
           <td >8 a.m. - 9 a.m.</td>
           <td id="celda">
-            @foreach ($horarios as $horario)
-            <ul class="list-group" id="ul">
-              <li class="list-group-item">{{  $horario->dia}}</li>
-             
-            </ul>
-            @endforeach
-            
           </td>
           <td></td>
           <td></td>
           <td></td>
-          <td></td>
+          <td>Ocupado</td>
         </tr>
         <tr class="table table-sm table-bordered" >
           <td>9 a.m. - 10 a.m. </td>
@@ -241,7 +234,43 @@
 </div>
 <script>
   $(document).ready(function(){
-    
+    //cargar horario que esta en la b.d.
+    @foreach ($proyecto->horarios as $horario)
+      $('#tbl-horario tbody')[0].rows[{{$horario->x}}].children[{{$horario->y}}].innerText="x";
+    @endforeach
+
+    $('#tbl-horario tbody').on('click' , 'td', function(){     
+      hora = this.parentElement.getAttribute('aria-hora');
+      dia = this.cellIndex;
+      switch (dia) {
+        case 1:
+          diat = "lunes";
+          break;
+        case 2:
+          diat = "martes";
+          break;
+        case 3:
+          diat = "miercoles";
+          break;
+        case 4:
+          diat = "jueves";
+          break;
+        case 5:
+          diat = "viernes";
+          break;
+        default:
+          return;
+          break;
+      }
+//      alert('dio click en: hora:' + hora + ', ' + diat );
+      ocupado = this.innerText;
+      if (ocupado) 
+        alert('mandar a eliminar en la b.d.');
+      else 
+        alert('mandar a guardar en la b.d');
+
+     })
+
     $('#btnModificar').click(function(){
       $('#modalEdit').modal();
       
@@ -279,9 +308,10 @@
 
 
 <script type="text/javascript">
+
   $(document).ready(function(){
-
-
+    //usar javascript api fetch
+    
 
     $('#celda').click(function(){
       $('#modalID').modal();

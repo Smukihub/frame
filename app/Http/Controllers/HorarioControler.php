@@ -20,7 +20,10 @@ class HorarioControler extends Controller
     {
 
        $horarios = Horario::all();
-        return view('Horarios.index')->with('horarios',$horarios);
+       $proyecto = Proyecto::find(3);
+       //$proyecto = 1;
+       
+        return view('Horarios.index',compact('proyecto'));
     }
 
     /**

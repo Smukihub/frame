@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Horario extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['dia'];
+    protected $fillable = ['x','y','proyecto_id'];
 
 
     public function proyecto(){
