@@ -34,6 +34,12 @@ class HorarioControler extends Controller
     public function create(Request $request)
     {
      
+        $horarios = new Horarios();
+        $horarios->x = $request->input('x');
+        $horarios->y = $request->input('y');
+        
+        $horarios->save();
+        return json_encode(["msg" => "usuario agregado"]); 
     }
 
     /**

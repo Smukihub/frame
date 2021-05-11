@@ -15,17 +15,19 @@ class CreateHorariosTable extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
+            $table->integer('x');
+            $table->integer('y');
             
            //$table->timestamps();
-            $table->enum('dia', ['Lunes', 'Martes','Miercoles','Jueves','Viernes']);
+           $table->enum('dia', ['Lunes', 'Martes','Miercoles','Jueves','Viernes']);
             //$table->string('color',255);
            // $table->string('textColor',20);
             //$table->text('descripcion',20);
            //$table->tinyInteger('estado')->default(1);
             //$table->dateTime('start');
             //$table->dateTime('end');
-           // $table->foreignId('proyecto_id')
-           //->references('id')->on('proyectos');
+           $table->foreignId('proyecto_id')
+           ->references('id')->on('proyectos');
             
            
         });

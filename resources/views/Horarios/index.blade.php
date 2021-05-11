@@ -4,7 +4,48 @@
 
 @section('content')
 
-para el proyecto 3 este sera el horario<br>
+
+<form>
+  <div class="form-row">
+   
+  <div class="form-row">
+  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"/>
+    <div class="form-group col-md-4">
+      <label for="x">Dia</label>
+      <select id="x"  name="x" class="form-control">
+      <option selected>Seleccione día</option>
+        <option value="1">Lunes</option>
+        <option value="2">Martes</option>
+        <option value="3">Miercoles</option>
+        <option value="4">Jueves</option>
+        <option value="5">Viernes</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="y">Hora</label>
+      <select id="y" name="y" class="form-control">
+      <option selected>Seleccione hora</option>
+        <option value="0">8 a.m - 9 a.m</option>
+        <option value="1">9 a.m - 10 a.m</option>
+        <option value="2">10 a.m - 11 a.m</option>
+        <option value="3">11 a.m - 12 p.m</option>
+        <option value="4">12 p.m - 1 p.m</option>
+        <option value="5">1 p.m - 2 p.m</option>
+        <option value="6">2 p.m - 3 p.m</option>
+        <option value="7">3 p.m - 4 p.m</option>
+        <option value="8">4 p.m - 5 p.m</option>
+        <option value="9">5 p.m - 6 p.m</option>
+        <option value="10">6 p.m - 7 p.m</option>
+        <option value="11">7 p.m - 8 p.m</option>
+        <option value="12">8 p.m - 9 p.m</option>
+      </select>
+
+    </div>
+    <div class="form-group col-md-6">
+    <button onclick='agregar();' class="btn btn-primary " >Agregar</button>
+    </div>
+  
+</form>
 
 
 <div class="card-body">
@@ -28,7 +69,7 @@ para el proyecto 3 este sera el horario<br>
           <td></td>
           <td></td>
           <td></td>
-          <td>Ocupado</td>
+          <td></td>
         </tr>
         <tr class="table table-sm table-bordered" >
           <td>9 a.m. - 10 a.m. </td>
@@ -233,10 +274,41 @@ para el proyecto 3 este sera el horario<br>
   </div>
 </div>
 <script>
+      
+  let x =  document.getElementById('x');
+  let y =  document.getElementById('y');
+  let _token =  document.getElementById('token');
+
+ async function agregar(){
+        let obj = { x:x.value, y:y.value};
+        const res = await fetch('/Horarios', {
+             method:'POST',
+             mode: 'cors',
+             headers:{
+                   'X-CSRF-TOKEN': _token.value,
+                   'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(obj)      
+            });
+       
+            const data = await res.json()
+            console.log(data)
+            clearInput()
+  }
+     
+
+ 
+          
+
   $(document).ready(function(){
+  
+
+
+
+
     //cargar horario que esta en la b.d.
     @foreach ($proyecto->horarios as $horario)
-      $('#tbl-horario tbody')[0].rows[{{$horario->x}}].children[{{$horario->y}}].innerText="x";
+      $('#tbl-horario tbody')[0].rows[{{$horario->y}}].children[{{$horario->x}}].innerText="x";
     @endforeach
 
     $('#tbl-horario tbody').on('click' , 'td', function(){     
@@ -262,7 +334,7 @@ para el proyecto 3 este sera el horario<br>
           return;
           break;
       }
-//      alert('dio click en: hora:' + hora + ', ' + diat );
+        alert('dio click en: hora:' + hora + ', ' + diat );
       ocupado = this.innerText;
       if (ocupado) 
         alert('mandar a eliminar en la b.d.');

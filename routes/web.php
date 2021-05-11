@@ -23,6 +23,7 @@ Route::resource('Proyectos','ProyectoControler');
 Route::resource('Historicos','HistoricoControler');
 Route::resource('Usuarios','UserControler');
 
+
 Route::get('ver_horario/{proyectos_id}','VerControler@ver');
 
 //Route::get('/home', 'HomeController@index')->name('home');
