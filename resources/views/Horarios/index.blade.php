@@ -8,9 +8,9 @@
 <form>
 
   <div class="form-row">
-   
+   <!---->
   <div class="form-row">
-  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"/>
+ < <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"/>  
     <div class="form-group col-md-4">
       <label for="x">Dia</label>
       <select id="x"  name="x" class="form-control">
@@ -44,7 +44,7 @@
     </div>
     <div class="form-group col-md-4">
       <label for="proyecto_id">Proyecto</label>
-      <select name="proyecto_id">
+      <select id="proyecto_id" name="proyecto_id">
         @forelse($proyectos as $proyecto)
             <option value="{{$proyecto->id}}">{{$proyecto->nombre}}</option>
             @empty
@@ -299,28 +299,29 @@
 
  async function agregar(){
         let obj = { x:x.value, y:y.value, proyecto_id:proyecto_id.value};
-        const res = await fetch('http://frame.test/Horarios', {
+        const res = await fetch('/Horarios', {
              method:'POST',
-             mode: 'cors',
+            // mode: 'cors',
              headers:{
-                   'X-CSRF-TOKEN': _token.value,
+                   //'X-CSRF-TOKEN': _token.value,
                    'Content-Type': 'application/json'
             },
             body:JSON.stringify(obj)      
-            });
+            })
        
-            const data = await res.json()
-            console.log(data)
-            clearInput()
+           .then(response => response.json())
+           .then(json => console.log(json));
+          
   }
      
   async function eliminar(){
+    let obj = { x:x.value, y:y.value, proyecto_id:proyecto_id.value};
     fetch('http://frame.test/Horarios', {
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify(YOUR_ADDITIONAL_DATA)  //if you do not want to send any addional data,  replace the complete JSON.stringify(YOUR_ADDITIONAL_DATA) with null
+  body: JSON.stringify(obj)  //if you do not want to send any addional data,  replace the complete JSON.stringify(YOUR_ADDITIONAL_DATA) with null
 })
   }
  
