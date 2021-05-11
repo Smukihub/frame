@@ -19,7 +19,7 @@ class CreateHorariosTable extends Migration
             $table->integer('y');
             
            //$table->timestamps();
-           $table->enum('dia', ['Lunes', 'Martes','Miercoles','Jueves','Viernes']);
+           //$table->enum('dia', ['Lunes', 'Martes','Miercoles','Jueves','Viernes']);
             //$table->string('color',255);
            // $table->string('textColor',20);
             //$table->text('descripcion',20);

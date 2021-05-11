@@ -6,6 +6,7 @@
 
 
 <form>
+
   <div class="form-row">
    
   <div class="form-row">
@@ -41,8 +42,20 @@
       </select>
 
     </div>
+    <div class="form-group col-md-4">
+      <label for="proyecto_id">Proyecto</label>
+      <select name="proyecto_id">
+        @forelse($proyectos as $proyecto)
+            <option value="{{$proyecto->id}}">{{$proyecto->nombre}}</option>
+            @empty
+              <option disable>Sin proyectos</option>
+        @endforelse
+      </select>
+
+
+    </div>
     <div class="form-group col-md-6">
-    <button onclick='agregar();' class="btn btn-primary " >Agregar</button>
+    <button  id="agregarid" class="btn btn-primary " >Agregar</button>
     </div>
   
 </form>
@@ -273,15 +286,20 @@
     </div>
   </div>
 </div>
+
+
+
 <script>
+  document.getElementById('agregarid').addEventListener('click', agregar);
       
   let x =  document.getElementById('x');
   let y =  document.getElementById('y');
+  let proyecto_id  =  document.getElementById('proyecto_id');
   let _token =  document.getElementById('token');
 
  async function agregar(){
-        let obj = { x:x.value, y:y.value};
-        const res = await fetch('/Horarios', {
+        let obj = { x:x.value, y:y.value, proyecto_id:proyecto_id.value};
+        const res = await fetch('http://frame.test/Horarios', {
              method:'POST',
              mode: 'cors',
              headers:{
@@ -296,7 +314,15 @@
             clearInput()
   }
      
-
+  async function eliminar(){
+    fetch('http://frame.test/Horarios', {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(YOUR_ADDITIONAL_DATA)  //if you do not want to send any addional data,  replace the complete JSON.stringify(YOUR_ADDITIONAL_DATA) with null
+})
+  }
  
           
 

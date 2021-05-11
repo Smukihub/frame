@@ -20,10 +20,10 @@ class HorarioControler extends Controller
     {
 
        $horarios = Horario::all();
-       $proyecto = Proyecto::find(3);
+       $proyectos = Proyecto::all();
        //$proyecto = 1;
        
-        return view('Horarios.index',compact('proyecto'));
+        return view('Horarios.index',compact('proyectos'));
     }
 
     /**
@@ -33,13 +33,13 @@ class HorarioControler extends Controller
      */
     public function create(Request $request)
     {
-     
+        $proyecto = Proyecto::all();
         $horarios = new Horarios();
         $horarios->x = $request->input('x');
         $horarios->y = $request->input('y');
         
         $horarios->save();
-        return json_encode(["msg" => "usuario agregado"]); 
+        return json_encode(["msg" => "usuario agregado"],compact('proyectos')); 
     }
 
     /**
