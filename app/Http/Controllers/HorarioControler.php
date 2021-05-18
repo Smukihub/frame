@@ -49,14 +49,15 @@ class HorarioControler extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-
+    {      
         $registro = new Horario();
         $valores = $request->all();
         
         $registro->fill($valores);
         $registro->save();
-
+        $arreglo=$registro->toArray;
+        $registro['proyecto'] = $registro->proyecto->nombre;
+        return json_encode(["msg" => "Horario agregado", "registro" => $registro]); 
     }
 
     /**
