@@ -16,6 +16,7 @@ class ProyectoSeeder extends Seeder
             'd_actividades' => "Proyecto web" ,
             'prestador_id' => "4" ,
             'responsable_id' => "2" ,
+            'iniciales'=>"JFM",
         ]);
         DB::table('proyectos')->insert([
             'nombre' => "Titulacion",
