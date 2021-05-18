@@ -16,12 +16,14 @@ class ProyectoSeeder extends Seeder
             'd_actividades' => "Proyecto web" ,
             'prestador_id' => "4" ,
             'responsable_id' => "2" ,
+            'iniciales' =>"SFL",
         ]);
         DB::table('proyectos')->insert([
             'nombre' => "Titulacion",
             'd_actividades' => "Proyecto Web" ,
             'prestador_id' => "4" ,
             'responsable_id' => "2" ,
+            'iniciales' =>"SFL",
             
         ]);
         DB::table('proyectos')->insert([
@@ -29,6 +31,7 @@ class ProyectoSeeder extends Seeder
             'd_actividades' => "Proyecto web" ,
             'prestador_id' => "4" ,
             'responsable_id' => "2" ,
+            'iniciales' =>"SFL",
         ]);
     }
 }
