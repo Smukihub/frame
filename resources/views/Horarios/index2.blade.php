@@ -6,11 +6,18 @@
 
 
 
+<<<<<<< HEAD
 
   <div class="form-row">
    <!---->
   <div class="form-row">
   <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"/>  
+=======
+  <div class="form-row">
+   <!---->
+  <div class="form-row">
+ < <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"/>  
+>>>>>>> 0d04b85c2687fd1bb940490b55abc82c061cc119
     <div class="form-group col-md-4">
       <label for="x">Dia</label>
       <select id="x"  name="x" class="form-control">
@@ -57,8 +64,11 @@
     <div class="form-group col-md-6">
     <button  id="agregarid" class="btn btn-primary " >Agregar</button>
     </div>
+<<<<<<< HEAD
   
 
+=======
+>>>>>>> 0d04b85c2687fd1bb940490b55abc82c061cc119
 
 
 <div class="card-body">
@@ -297,6 +307,7 @@
   let proyecto_id  =  document.getElementById('proyecto_id');
   let _token =  document.getElementById('token');
 
+<<<<<<< HEAD
  async function agregar(){
         let obj = { 
         _token:document.getElementById('token').value,
@@ -317,10 +328,35 @@
            .then(response => response.json())
            .then(json => console.log(json));
           
+=======
+
+
+
+ async function agregar(){
+  let obj = { 
+    _token:document.getElementById('token').value, 
+    x:x.value, 
+    y:y.value, 
+    proyecto_id:proyecto_id.value
+  };
+
+  fetch('/Horarios', {
+    method: 'POST',
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(obj)
+})
+        .then(response => response.json())
+        .then(res=> {
+          console.log("pintar en dia: " + res.registro.x + " con hora " + res.registro.y + "para el proyecto")
+        });
+>>>>>>> 0d04b85c2687fd1bb940490b55abc82c061cc119
   }
      
   async function eliminar(){
     let obj = { x:x.value, y:y.value, proyecto_id:proyecto_id.value};
+<<<<<<< HEAD
     fetch('/Horarios', {
       method: 'DELETE',
     })
@@ -330,6 +366,15 @@
 
   body: JSON.stringify(obj)  //if you do not want to send any addional data,  replace the complete JSON.stringify(YOUR_ADDITIONAL_DATA) with null
     })
+=======
+    fetch('http://frame.test/Horarios', {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(obj)  //if you do not want to send any addional data,  replace the complete JSON.stringify(YOUR_ADDITIONAL_DATA) with null
+})
+>>>>>>> 0d04b85c2687fd1bb940490b55abc82c061cc119
   }
  
           
@@ -406,10 +451,23 @@
 
 
    });
+<<<<<<< HEAD
   
 
   
  
+=======
+  });
+</script>
+
+   
+
+
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+>>>>>>> 0d04b85c2687fd1bb940490b55abc82c061cc119
     //usar javascript api fetch
     
 
@@ -449,10 +507,13 @@
   });
 </script>
 
+<<<<<<< HEAD
    
 
 
 
+=======
+>>>>>>> 0d04b85c2687fd1bb940490b55abc82c061cc119
 
 
 

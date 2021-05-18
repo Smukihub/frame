@@ -19,7 +19,11 @@
       <tbody>
         <tr aria-hora ="8">
           <th>8 a.m. - 9 a.m.</th>
+<<<<<<< HEAD
           <td data-id="${registro.id}"></td>
+=======
+          <td></td>
+>>>>>>> 0d04b85c2687fd1bb940490b55abc82c061cc119
           <td></td>
           <td></td>
           <td></td>
@@ -119,14 +123,20 @@
       </tbody>
     </table>
   </div>
+<<<<<<< HEAD
 </div>
 </div>
+=======
+</div>
+</div>
+>>>>>>> 0d04b85c2687fd1bb940490b55abc82c061cc119
 
 
 <script>
   tbl  =  document.getElementById("tbl-horario").addEventListener('click',event => {
     
     if (event.target.tagName === 'TD') {
+<<<<<<< HEAD
       
       let obj = { 
         _token: '{{ csrf_token() }}',
@@ -176,5 +186,53 @@
   });
   
   
+=======
+      
+      let obj = { 
+        _token: '{{ csrf_token() }}',
+        dia :event.target.cellIndex,
+        hora : event.target.parentElement.rowIndex,
+        proyecto_id:'1',
+      };
+      
+
+      
+      ocupado = event.target.innerText;
+      if (ocupado) {
+      }else {
+        fetch('/Horarios', {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(obj)
+        })
+        .then(response => response.json())
+        .then(res=> {
+          hora= res.registro.hora;
+          dia = res.registro.dia;
+          nombre = res.registro.proyecto.nombre;
+          tabla = document.getElementById("tbl-horario");
+          document.getElementById("tbl-horario").rows[hora].children[dia].innerText=nombre;
+          x=1;
+          console.log("pintar en dia: " + res.registro.x + " con hora " + res.registro.y + "para el proyecto")
+          x++;
+        });
+      }
+        
+
+     
+
+      
+      
+      
+    }
+
+  });
+  
+
+  
+
+>>>>>>> 0d04b85c2687fd1bb940490b55abc82c061cc119
 </script>
 @endsection

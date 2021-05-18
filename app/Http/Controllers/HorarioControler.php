@@ -49,7 +49,15 @@ class HorarioControler extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+<<<<<<< HEAD
     {      
+=======
+    {     
+        //print_r($request->all());
+        //return;
+        
+
+>>>>>>> 0d04b85c2687fd1bb940490b55abc82c061cc119
         $registro = new Horario();
         $valores = $request->all();
         
