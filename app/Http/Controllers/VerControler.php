@@ -13,6 +13,7 @@ class VerControler extends Controller
       
         $horarios = Horario::all();
         $proyecto = Proyecto::all();
+        
         if (is_null($proyecto)){
             $horarios = array();
             $mensaje = "Proyecto no encontrada";

@@ -10,10 +10,14 @@ class Proyecto extends Model
     public $timestamps = false;
     protected $fillable = ['nombre','d_actividades','prestador_id','responsable_id'];
 
-    public function users()
-    {
-        return $this->hasMany('App\Models\User'.'id','prestador_id','responsable_id');
+    public function prestador(){
+        return $this->hasOne('App\Models\User','id','prestador_id');
     }
+    public function responsable(){
+        return $this->hasOne('App\Models\User','id','responsable_id');
+    }
+
+
     public function horarios()
     {
         return $this->hasMany('App\Models\Horario');
