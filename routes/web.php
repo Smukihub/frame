@@ -27,3 +27,8 @@ Route::resource('Usuarios','UserControler');
 Route::get('ver_horario/{proyectos_id}','VerControler@ver');
 
 //Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('version', function(){
+    phpinfo();
+});
