@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','InicioControler@inicio');
+Route::get('version',function()
+{
+    phpinfo();
+});
 Route::get('tablero','InicioControler@tablero');
 Auth::routes();
 
@@ -22,6 +26,8 @@ Route::resource('Horarios','HorarioControler');
 Route::resource('Proyectos','ProyectoControler');
 Route::resource('Historicos','HistoricoControler');
 Route::resource('Usuarios','UserControler');
+
+
 
 
 Route::get('ver_horario/{proyectos_id}','VerControler@ver');
