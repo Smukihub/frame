@@ -122,6 +122,9 @@
 </div>
 </div>
 <script>
+@foreach ($proyecto->horarios as $horario)
+document.getElementById("tbl-horario").rows[{{$horario->hora}}].children[{{$horario->dia}}].innerText='{{$horario->proyecto->nombre}}';  
+@endforeach
 
   tbl  =  document.getElementById("tbl-horario").addEventListener('click',event => {
 
@@ -129,9 +132,6 @@
 cargar los horarios
 
 */
-@foreach ($horarios as $horario)
-document.getElementById("tbl-horario").rows[{{$horario->hora}}].children[{{$horario->dia}}].innerText='{{$horario->proyecto->nombre}}';  
-@endforeach
 
     if (event.target.tagName === 'TD') {
       

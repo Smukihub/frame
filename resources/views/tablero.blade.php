@@ -77,51 +77,118 @@
               </h4>
             </div>
             <div class="card-body">
-              <div>
-                <table class="table table-hover"   >
+              <div class="container">
+                <table class="table table-hover table-bordered"  id="tbl-horario" >
                   <thead>
-                    <tr>
-                      <th colspan="5"  ></th>
-                    </tr>
+                    <tr class="table table-sm table-bordered" >        
+                      <th scope="row"class="bg-success ">H</th>
+                      <th scope="row"class="bg-success">L</th>
+                      <th scope="row"class="bg-success">M</th>
+                      <th scope="row"class="bg-success">Mi</th>
+                      <th scope="row"class="bg-success">J</th>
+                      <th scope="row"class="bg-success">V</th>
+                    </tr>        
                   </thead>
                   <tbody>
-                    <tr class="table table-sm table-bordered" >
-                      
-                      <th scope="row"class="bg-success">Lunes</th>
-                      <th scope="row"class="bg-success">Martes</th>
-                      <th scope="row"class="bg-success">Miercoles</th>
-                      <th scope="row"class="bg-success">Jueves</th>
-                      <th scope="row"class="bg-success">Viernes</th>
-                    </tr>
-                    <tr class="table table-sm table-bordered" >
-                      <td scope="row">8-10</th>
-                      <td>8-9</td>
+                    <tr aria-hora ="8">
+                      <th>08</th>
+                      <td data-id="${registro.id}"></td>
+                      <td></td>
                       <td></td>
                       <td></td>
                       <td></td>
                     </tr>
-                    <tr class="table table-sm table-bordered" >
-                      <td scope="row">16-20</th>
-                        <td>12-14</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr aria-hora ="9" >
+                      <th>09</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                     </tr>
-                    <tr class="table table-sm table-bordered" >
-                      <td scope="row"></th>
-                        <td>16-20</td>
+                    <tr aria-hora ="10">
+                      <th>10</th>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr class="table table-sm table-bordered" > 
-                      <td scope="row"></th>
-                        <td>16-20</td>
-                        <td>16-20</td>
+                      <th >11</th>
                         <td></td>
-                        <td>16-20</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                   
+                    <tr class="table table-sm table-bordered" > 
+                      <th >121  </th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                  
+                    <tr class="table table-sm table-bordered" > 
+                      <th >12  </th>
+                        <td>X</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                  
+                    <tr class="table table-sm table-bordered" > 
+                      <th  >34  </th>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>X</td>
+                    </tr>
+                    <tr class="table table-sm table-bordered" > 
+                      <th  >45  </th>
+                        <td></td>
+                        <td>X</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="table table-sm table-bordered" > 
+                      <td  > 56  </th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="table table-sm table-bordered" > 
+                      <th  >67  </th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="table table-sm table-bordered" > 
+                      <th  >78  </th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="table table-sm table-bordered" > 
+                      <th >89  </th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>     
                   </tbody>
                 </table>
               

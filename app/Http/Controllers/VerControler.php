@@ -11,18 +11,10 @@ class VerControler extends Controller
 {
     public function ver($proyecto_id){
       
-        $horarios = Horario::all();
-        $proyecto = Proyecto::all();
         
-        if (is_null($proyecto)){
-            $horarios = array();
-            $mensaje = "Proyecto no encontrada";
-        }else{
-            
-           
-        }
-       
-        return view('ver',compact('mensaje','horarios','proyectos'));
+        $proyecto = Proyecto::find($proyecto_id);
+              
+        return view('ver',compact('proyecto'));
     }
 
 
