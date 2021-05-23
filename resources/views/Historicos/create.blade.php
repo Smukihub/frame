@@ -80,9 +80,15 @@
                 
               
 
-                <div class="form-group col-md-12" id="contenido">
-               
+                <div class="form-group col-md-12 " id="asistdiv" style="display: none">
+                 <label for='exampleFormControlTextarea1'>Descripción de actividades</label>
+                  <textarea class='form-control' id='asistinput' rows='3' style="display: none"></textarea>
                 </div>
+                <div class='form-group' style="display: none" id="retardodiv">
+                  <label for='exampleFormControlTextarea1'>Seleccione hora de llegada</label>
+                  <input type='time' id="retardoinput"  style="display: none" >
+                </div>
+               
                
                 
               </form>
@@ -205,29 +211,67 @@
             </div>
           
           </div>
-        rwgqwrg
+        
         </div>
       </div>
   </div>
   <script>
     var botonAsistencia = document.getElementById("asistenciaid")
     botonAsistencia.addEventListener("click",function(){
-      var icontenido = document.getElementById("contenido")
-      icontenido.innerHTML = 
-      "<br>"
-      +" <label for='actv'>Actividades Realizadas</label>" +
-       "<textarea class='form-control' id='actv' rows='3'></textarea>"+
-       "<br>"+
-       "<input type='submit' class='btn btn-primary' value='Guardar'> "
+      let msjretardo = document.getElementById("retardodiv");
+      let horainput = document.getElementById("retardoinput");
+      let msjasist = document.getElementById("asistdiv");
+      let textoinput = document.getElementById("asistinput");
+     
+
+      //texto.setAttribute('style', 'display: none'); 
+      //msjinput.setAttribute('style', 'display: none'); 
+      if(msjretardo.hasAttribute('style'))
+          {
+            msjasist.removeAttribute('style', 'display: none');  
+            textoinput.removeAttribute('style', 'display: none');  
+            textoinput.setAttribute('ID','actv');
+          }
+        
+          else
+          {
+            msjretardo.setAttribute('style', 'display: none');
+            msjasist.removeAttribute('style', 'display: none');
+            textoinput.removeAttribute('style', 'display: none');
+            
+           
+           
+            
+          }
+      //icontenido.removeAttribute('style', 'display: none');      
+      
       },false);
 
       var botonRetardo = document.getElementById("retardoid")
         botonRetardo.addEventListener("click",function(){
-          var icontenido = document.getElementById("contenido")
-          icontenido.innerHTML = 
-          "<br>"+
-          " <div class='form-group'><label for='exampleFormControlTextarea1'>Seleccione hora de llegada</label><input type='time'></div>" +
-          "<input type='submit' class='btn btn-primary' value='Guardar'>"
+          let msjretardo = document.getElementById("retardodiv");
+          let horainput = document.getElementById("retardoinput");
+          let msjasist = document.getElementById("asistdiv");
+          let textoinput = document.getElementById("asistinput");
+
+
+          //icontenido.removeAttribute('style', 'display: none'); 
+          if(msjasist.hasAttribute('style'))
+          {
+            msjretardo.removeAttribute('style', 'display: none');  
+            horainput.removeAttribute('style', 'display: none'); 
+            horainput.setAttribute('ID','horares');
+            
+          }
+          else
+          {
+            msjasist.setAttribute('style', 'display: none');
+            msjretardo.removeAttribute('style', 'display: none');  
+            horainput.removeAttribute('style', 'display: none');  
+            horainput.setAttribute('ID','horares');
+          }
+
+         
           },false);
 
 
@@ -235,11 +279,7 @@
          botonFalta.addEventListener("click",function(){
           var icontenido = document.getElementById("contenido")
           icontenido.innerHTML = 
-          "<br>"
-          +" <label for='justi'>Justificacion</label>" +
-          "<textarea class='form-control' id='justi' rows='3'></textarea>"+
-          "<br>"+
-          "<input type='submit' class='btn btn-primary' value='Guardar'> "
+         
           },false);
   </script>
 
