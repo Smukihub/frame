@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Historico extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['dia','descripcion'];
+    protected $fillable = ['dia','hora','tipo','actv','justi'];
     
 }

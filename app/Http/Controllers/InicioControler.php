@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 use App\Models\Proyecto;
+use App\Models\Horario;
 
 class InicioControler extends Controller
 {
@@ -24,8 +25,9 @@ class InicioControler extends Controller
             case 'Jefe':
                 $usuarios = User::all();
                 $proyectos = Proyecto::all();
+                $horarios = Horario::all();
               
-                return  view('tablero',compact('usuarios','proyectos'));
+                return  view('tablero',compact('usuarios','proyectos','horarios'));
                 break;
             case 'Prestador':
                 $usuarios = User::all();

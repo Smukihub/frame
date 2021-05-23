@@ -15,10 +15,15 @@ class CreateHistoricosTable extends Migration
     {
         Schema::create('historicos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            
 
-            $table->date('dia');
-            $table->string('descripcion');
+            $table->integer('dia');
+            $table->integer('hora');
+            $table->enum('tipo', ['Asistencia', 'Retardo','Falta']);
+            $table->time('horares')->nullable();
+
+            $table->string('actv')->default('Ejemplo');
+            $table->string('justi')->default('Ejemplo');
             
         });
     }

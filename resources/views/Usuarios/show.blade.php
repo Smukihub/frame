@@ -10,7 +10,7 @@
   <div class="row justify-content-center">
       <div class="col-md-8">
           <div class="card">
-              <div class="card-header">{{ __('Mostrar') }}</div>
+              <div class="card-header">{{ __('Datos del usuario') }}</div>
 
               <div class="card-body">
                                   
@@ -36,7 +36,7 @@
                   </div>
                   <div class="row">
                     <div class="col">Imagen:</div>
-                    <div class="col bg-light"><img src="/storage/images/{{$usuario->path}}" alt="" style="width: 80px;height: 80px; padding: 10px; margin: 0px; " class="img-thumnail"></div>
+                    <div class="col bg-light"><img src="/images/{{$usuario->path}}" alt="" style="width: 80px;height: 80px; padding: 10px; margin: 0px; " class="img-thumnail"></div>
                     <div class="col"></div>
                     <div class="col"></div>
                   </div>

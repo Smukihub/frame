@@ -83,7 +83,7 @@
     </div> 
     <div class="form-group">
         <label for="path">Imagen del usuario:</label>
-        <img src="/storage/images/{{$usuario->path}}" alt="" class="img-thumnail" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+        <img src="/images/{{$usuario->path}}" alt="" class="img-thumnail" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
         <input type="file" name="path" id="path">
     </div>
     
