@@ -22,8 +22,8 @@ class CreateHistoricosTable extends Migration
             $table->enum('tipo', ['Asistencia', 'Retardo','Falta']);
             $table->time('horares')->nullable();
 
-            $table->string('actv')->default('Ejemplo');
-            $table->string('justi')->default('Ejemplo');
+            $table->string('actv')->nullable();
+            $table->string('justi')->nullable();
             
         });
     }

@@ -50,7 +50,7 @@
                 <div class="form-group col-md-8">
                   <label for="hora">Hora:</label>
                   <select id="hora" name="hora" class="form-control">
-                  <option selected>Seleccione hora</option>
+                  <option selected disabled>Seleccione hora</option>
                     <option value="0">8 a.m - 9 a.m</option>
                     <option value="1">9 a.m - 10 a.m</option>
                     <option value="2">10 a.m - 11 a.m</option>
@@ -81,12 +81,22 @@
               
 
                 <div class="form-group col-md-12 " id="asistdiv" style="display: none">
-                 <label for='exampleFormControlTextarea1'>Descripción de actividades</label>
-                  <textarea class='form-control' id='asistinput' rows='3' style="display: none"></textarea>
+                 <label for='exampleFormControlTextarea1'>Descripción de actividades:</label>
+                  <textarea class='form-control' id='actv' rows='3' ></textarea>
+                  <br>
+                  <input type="submit" class="btn btn-primary" value="Guardar">
                 </div>
-                <div class='form-group' style="display: none" id="retardodiv">
+                <div class='form-group col-md-12 ' style="display: none" id="retardodiv">
                   <label for='exampleFormControlTextarea1'>Seleccione hora de llegada</label>
-                  <input type='time' id="retardoinput"  style="display: none" >
+                  <input type='time' class='form-control' id="horares">
+                  <br>
+                  <input type="submit" class="btn btn-primary" value="Guardar">
+                </div>
+                <div class="form-group col-md-12 " id="faltadiv" style="display: none">
+                 <label for='exampleFormControlTextarea1'>Justificación:</label>
+                  <textarea class='form-control' id='justi' rows='3' ></textarea>
+                  <br>
+                  <input type="submit" class="btn btn-primary" value="Guardar">
                 </div>
                
                
@@ -215,72 +225,73 @@
         </div>
       </div>
   </div>
+
   <script>
     var botonAsistencia = document.getElementById("asistenciaid")
     botonAsistencia.addEventListener("click",function(){
-      let msjretardo = document.getElementById("retardodiv");
-      let horainput = document.getElementById("retardoinput");
-      let msjasist = document.getElementById("asistdiv");
-      let textoinput = document.getElementById("asistinput");
-     
-
-      //texto.setAttribute('style', 'display: none'); 
-      //msjinput.setAttribute('style', 'display: none'); 
-      if(msjretardo.hasAttribute('style'))
-          {
-            msjasist.removeAttribute('style', 'display: none');  
-            textoinput.removeAttribute('style', 'display: none');  
-            textoinput.setAttribute('ID','actv');
-          }
-        
-          else
-          {
-            msjretardo.setAttribute('style', 'display: none');
-            msjasist.removeAttribute('style', 'display: none');
-            textoinput.removeAttribute('style', 'display: none');
-            
-           
-           
-            
-          }
-      //icontenido.removeAttribute('style', 'display: none');      
-      
+    let msjretardo = document.getElementById("retardodiv");
+    let msjasist = document.getElementById("asistdiv");
+    let msjfalta = document.getElementById("faltadiv");
+    
+    if(msjretardo.hasAttribute('style') || msjfalta.hasAttribute('style') )
+       {
+        msjasist.removeAttribute('style', 'display: none');  
+       } 
+    if(!msjretardo.hasAttribute('style') )
+       {
+        msjretardo.setAttribute('style', 'display: none');
+        msjasist.removeAttribute('style', 'display: none');
+       }
+    if(!msjfalta.hasAttribute('style') )
+       {
+        msjfalta.setAttribute('style', 'display: none');
+        msjasist.removeAttribute('style', 'display: none');
+        }    
+         
       },false);
 
-      var botonRetardo = document.getElementById("retardoid")
-        botonRetardo.addEventListener("click",function(){
-          let msjretardo = document.getElementById("retardodiv");
-          let horainput = document.getElementById("retardoinput");
-          let msjasist = document.getElementById("asistdiv");
-          let textoinput = document.getElementById("asistinput");
+    var botonRetardo = document.getElementById("retardoid")
+    botonRetardo.addEventListener("click",function(){
+    let msjretardo = document.getElementById("retardodiv");
+    let msjfalta = document.getElementById("faltadiv");
+    let msjasist = document.getElementById("asistdiv");
+    
+    if(msjasist.hasAttribute('style') || msjfalta.hasAttribute('style') )
+       {
+         msjretardo.removeAttribute('style', 'display: none');      
+       }
+    if(!msjasist.hasAttribute('style') )
+        {
+          msjasist.setAttribute('style', 'display: none');
+          msjretardo.removeAttribute('style', 'display: none');
+        }
+    if(!msjfalta.hasAttribute('style') )
+      {
+        msjfalta.setAttribute('style', 'display: none');
+        msjretardo.removeAttribute('style', 'display: none');
+      }
+      },false);
 
-
-          //icontenido.removeAttribute('style', 'display: none'); 
-          if(msjasist.hasAttribute('style'))
-          {
-            msjretardo.removeAttribute('style', 'display: none');  
-            horainput.removeAttribute('style', 'display: none'); 
-            horainput.setAttribute('ID','horares');
-            
-          }
-          else
-          {
-            msjasist.setAttribute('style', 'display: none');
-            msjretardo.removeAttribute('style', 'display: none');  
-            horainput.removeAttribute('style', 'display: none');  
-            horainput.setAttribute('ID','horares');
-          }
-
-         
-          },false);
-
-
-      var botonFalta = document.getElementById("faltaid")
-         botonFalta.addEventListener("click",function(){
-          var icontenido = document.getElementById("contenido")
-          icontenido.innerHTML = 
-         
-          },false);
+    var botonFalta = document.getElementById("faltaid")
+    botonFalta.addEventListener("click",function(){
+    let msjretardo = document.getElementById("retardodiv");
+    let msjfalta = document.getElementById("faltadiv");
+    let msjasist = document.getElementById("asistdiv");
+    if(msjasist.hasAttribute('style') || msjretardo.hasAttribute('style') )
+      {
+        msjfalta.removeAttribute('style', 'display: none');       
+      }
+    if(!msjasist.hasAttribute('style') )
+      {
+        msjasist.setAttribute('style', 'display: none');
+        msjfalta.removeAttribute('style', 'display: none');
+      }
+    if(!msjretardo.hasAttribute('style') )
+      {
+        msjretardo.setAttribute('style', 'display: none');
+        msjfalta.removeAttribute('style', 'display: none');
+      }
+      },false);
   </script>
 
 </body>
