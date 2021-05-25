@@ -31,7 +31,7 @@
         <div class="container">
           <div class="row">
             <div class="col-4">
-              <form action="/Historicos" method="post" enctype="multipart/form-data">
+              <form action="/seguimientos/{{$proyecto->id}}" method="post" enctype="multipart/form-data">
               @csrf
                 <div class="form-group col-md-8">
                   <label for="dia">Dia:</label>
@@ -50,7 +50,7 @@
                 <div class="form-group col-md-8">
                   <label for="hora">Hora:</label>
                   <select id="hora" name="hora" class="form-control">
-                  <option selected disabled>Seleccione hora</option>
+                    <option selected disabled>Seleccione hora</option>
                     <option value="0">8 a.m - 9 a.m</option>
                     <option value="1">9 a.m - 10 a.m</option>
                     <option value="2">10 a.m - 11 a.m</option>
@@ -69,36 +69,31 @@
 
 
                 <div class="form-group col-md-12">
-                  <label for="hora">Seleccionar tipo:</label>
-                  <div class="form-group ">
+                  <label style="display: block">Seleccionar tipo:</label>
                     <input type="button" id="asistenciaid" class="btn btn-primary" value="Asistencia"></input>
                     <input type="button" id="retardoid"  class="btn btn-warning" value="Retardo"></input>
                     <input type="button" id="faltaid"  class="btn btn-danger" value="Falta"></input>
-                 </div>
+                    <input type="hidden" id="tipo" name="tipo">
                 </div>
-                
-                
-              
 
-                <div class="form-group col-md-12 " id="asistdiv" style="display: none">
+                <div class="form-group col-md-12 "  style="display: none" id="asistdiv" >
                  <label for='exampleFormControlTextarea1'>Descripción de actividades:</label>
-                  <textarea class='form-control' id='actv' rows='3' ></textarea>
-                  <br>
-                  <input type="submit" class="btn btn-primary" value="Guardar">
+                  <textarea class='form-control' id='actv' name="actv" rows='3' ></textarea>
+                  <br>                 
                 </div>
+ 
                 <div class='form-group col-md-12 ' style="display: none" id="retardodiv">
                   <label for='exampleFormControlTextarea1'>Seleccione hora de llegada</label>
-                  <input type='time' class='form-control' id="horares">
+                  <input type='time' class='form-control' id="horares"  name="horares">
                   <br>
-                  <input type="submit" class="btn btn-primary" value="Guardar">
                 </div>
                 <div class="form-group col-md-12 " id="faltadiv" style="display: none">
                  <label for='exampleFormControlTextarea1'>Justificación:</label>
-                  <textarea class='form-control' id='justi' rows='3' ></textarea>
+                  <textarea class='form-control' id='justi' name="justi" rows='3'></textarea>
                   <br>
-                  <input type="submit" class="btn btn-primary" value="Guardar">
                 </div>
-               
+                
+                <input type="submit" class="btn btn-primary" id="enviar" value="Guardar">               
                
                 
               </form>
@@ -227,12 +222,20 @@
   </div>
 
   <script>
+    @foreach ($proyecto->horarios as $horario)
+      document.getElementById("tbl-horario").rows[{{$horario->hora}}].children[{{$horario->dia}}].innerText='{{$horario->proyecto->nombre}}';  
+    @endforeach
+
+
     var botonAsistencia = document.getElementById("asistenciaid")
     botonAsistencia.addEventListener("click",function(){
+
     let msjretardo = document.getElementById("retardodiv");
     let msjasist = document.getElementById("asistdiv");
     let msjfalta = document.getElementById("faltadiv");
     
+    var textotipo = document.getElementById("tipo")
+      tipo.setAttribute('value','asistencia');
     if(msjretardo.hasAttribute('style') || msjfalta.hasAttribute('style') )
        {
         msjasist.removeAttribute('style', 'display: none');  
@@ -256,6 +259,8 @@
     let msjfalta = document.getElementById("faltadiv");
     let msjasist = document.getElementById("asistdiv");
     
+    var textotipo = document.getElementById("tipo")
+      tipo.setAttribute('value','retardo');
     if(msjasist.hasAttribute('style') || msjfalta.hasAttribute('style') )
        {
          msjretardo.removeAttribute('style', 'display: none');      
@@ -277,6 +282,10 @@
     let msjretardo = document.getElementById("retardodiv");
     let msjfalta = document.getElementById("faltadiv");
     let msjasist = document.getElementById("asistdiv");
+    
+    var textotipo = document.getElementById("tipo")
+      tipo.setAttribute('value','falta');
+
     if(msjasist.hasAttribute('style') || msjretardo.hasAttribute('style') )
       {
         msjfalta.removeAttribute('style', 'display: none');       
@@ -292,6 +301,7 @@
         msjfalta.removeAttribute('style', 'display: none');
       }
       },false);
+
   </script>
 
 </body>

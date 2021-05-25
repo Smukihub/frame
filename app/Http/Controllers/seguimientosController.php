@@ -4,19 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Historico;
+use App\Models\Horario;
+use App\Models\Proyecto;
 
-class HistoricoControler extends Controller
+class seguimientosController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request,$id )
     {
-        $historicos = Historico::all();
+        $historicos = Historico::where('proyecto_id',$id)->get();
         return view('Historicos.index')->with('historicos',$historicos);
-
+    }
+    public function nuevo(Request $request,$id )
+    {
+        //horio del proyecto
+        $proyecto = Proyecto::find($id);       
+        return view('Historicos.create',compact('proyecto'));
     }
 
     /**
@@ -26,9 +33,7 @@ class HistoricoControler extends Controller
      */
     public function create()
     {
-           
-        $historicos = Historico::all();
-        return view('Historicos.create')->with('historicos',$historicos);
+        //
     }
 
     /**
@@ -37,17 +42,10 @@ class HistoricoControler extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        
-        $valores = $request->all();
-        
-        $registro = new Historico();
-        $registro->fill($valores);
-        $registro->save();
-
-        return redirect("/Historicos")->with('mensaje','Proyecto agregado correctamente');
-    
+        dd($request->all());
+        //
     }
 
     /**

@@ -3,6 +3,7 @@
 
 
 @section('content') 
+HORARIO PARA EL PROYECTO: {{$proyecto->nombre}}</br>
 <div class="card-body">
   <div>
     <table class="table table-hover table-bordered"  id="tbl-horario" >
@@ -139,7 +140,7 @@ cargar los horarios
         _token: '{{ csrf_token() }}',
         dia :event.target.cellIndex,
         hora : event.target.parentElement.rowIndex,
-        proyecto_id:'1',
+        proyecto_id: {{$proyecto->id}},
       };
       
       
