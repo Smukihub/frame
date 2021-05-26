@@ -40,7 +40,8 @@
                                             <a href="/Proyectos/{{$proyectos->id}}/edit" class="btn btn-success">Editar</a>
                                             <a href="/Proyectos/{{$proyectos->id}}" class="btn btn-warning">Mostrar</a>
                                             <a href="/ver_horario/{{$proyectos->id}}" class="btn btn-primary">Horario</a> 
-                                            <a href="/" class="btn btn-primary">Seguimiento</a> 
+                                            <a href="/seguimientos/{{$proyectos->id}}"  class="btn btn-primary">Historico</a> 
+                                            <a href="/nuevo-seguimiento/{{$proyectos->id}}"  class="btn btn-primary">Seguimiento</a> 
                                              
                                             <form action="/Proyectos/{{$proyectos->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
                                                 @csrf

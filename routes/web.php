@@ -24,11 +24,12 @@ Auth::routes();
 Route::resource('Horarios','HorarioControler');
 
 Route::resource('Proyectos','ProyectoControler');
-Route::resource('Historicos','HistoricoControler');
+//Route::resource('Historicos','HistoricoControler');
 Route::resource('Usuarios','UserControler');
 
-
-
+Route::get('seguimientos/{proyectos_id}','seguimientosController@index');
+Route::get('nuevo-seguimiento/{proyectos_id}','seguimientosController@nuevo');
+Route::post('seguimientos/{proyectos_id}','seguimientosController@store');
 
 Route::get('ver_horario/{proyectos_id}','VerControler@ver');
 

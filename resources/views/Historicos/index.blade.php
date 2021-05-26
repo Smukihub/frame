@@ -15,27 +15,23 @@
   <div class="container  col-md-8">
     <table class="table table-hover"   >
       <thead>
-        <th scope="col">ID</th>
+        
         <th scope="col">Dia</th>
-        <th scope="col">Descripción</th>
+        <th scope="col">tipo</th>
+        <th scope="col">acciones</th>
       </thead>
       <tbody>
         @forelse ($historicos as $historicos)
-        <tr> @if($historicos->nombre)
-        
-        @endif
-        
-            <td>{{ $historicos->id }}</td>
+        <tr>
+            
             <td>{{ $historicos->dia }}</td>
             <td>{{ $historicos->descripcion }}</td>
-            
-           
-          
+            <td>botones</td>
          
         </tr>
     @empty
         <tr>
-            <td colspan="3">Sin asistencias registradas</td>
+            <td colspan="3">Sin  registros</td>
         </tr>
     @endforelse
        
