@@ -17,6 +17,6 @@ class User extends Authenticatable
     protected $fillable = ['nombre','apellido','telefono','email', 'password','numcontrol','path','activo','status','rol'];
 
     public function proyectos(){
-        return $this->hasMany('App\Models\Proyecyo');
+        return $this->hasMany('App\Models\Proyecto');
     }
 }

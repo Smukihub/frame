@@ -24,7 +24,7 @@ class CreateHistoricosTable extends Migration
 
             $table->string('actv')->nullable();
             $table->string('justi')->nullable();
-            $table->foreignId('proyecto_id')->references('id')->on('proyectos');
+            $table->foreignId('seguimiento_id')->references('id')->on('proyectos');
         });
     }
 

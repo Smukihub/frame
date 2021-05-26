@@ -46,14 +46,7 @@ class seguimientosController extends Controller
     public function store(Request $request)
     {
         $valores = $request->all();
-        $id = $request->input('proyecto_id');
-        $proyecto = Proyecto::find($id);
-        
-        //$proyecto->save();
-
-        
-        $registro = new Proyecto();
-        
+        $registro = new Historico();
         $registro->fill($valores);
         $registro->save();
 

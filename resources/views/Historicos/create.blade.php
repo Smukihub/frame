@@ -38,8 +38,8 @@
                   <input type="date" name="fecha" id="fecha" name="fecha" class="form-control" >
                 </div>
                 <div class="form-group col-md-8">
-                  <label for="proyecto_id">Proyecto:</label>
-                  <input type="text"  id="proyecto_id" name="proyecto_id" class="form-control" value="{{$proyecto->id}}" disabled>{{$proyecto->nombre}} </input>
+                  <label for="seguimiento_id">Proyecto:</label>
+                  <input type="text"  id="seguimiento_id" name="seguimiento_id" class="form-control" value="{{$proyecto->nombre}}" disabled></input>
                 </div>
                 <div class="form-group col-md-8">
                   <label for="dia">Dia:</label>
@@ -84,25 +84,15 @@
                     <input type="hidden" id="tipo" name="tipo">
                 </div>
 
-                <div class="form-group col-md-12 "  style="display: none" id="asistdiv" >
-                 <label for='exampleFormControlTextarea1'>Descripción de actividades:</label>
-                  <textarea class='form-control' id='actv' name="actv" rows='3' ></textarea>
-                  <br>                 
-                </div>
+              <div id="idcontenido">
+
+              </div>
+             
  
-                <div class='form-group col-md-12 ' style="display: none" id="retardodiv">
-                  <label for='exampleFormControlTextarea1'>Seleccione hora de llegada</label>
-                  <input type='time' class='form-control' id="horares"  name="horares">
-                  <br>
-                </div>
-                <div class="form-group col-md-12 " id="faltadiv" style="display: none">
-                 <label for='exampleFormControlTextarea1'>Justificación:</label>
-                  <textarea class='form-control' id='justi' name="justi" rows='3'></textarea>
-                  <br>
-                </div>
                 
-                <input type="submit" class="btn btn-primary"  value="Guardar">               
-               
+                
+                
+            
                 
               </form>
 
@@ -238,76 +228,38 @@
     var botonAsistencia = document.getElementById("asistenciaid")
     botonAsistencia.addEventListener("click",function(){
 
-    let msjretardo = document.getElementById("retardodiv");
-    let msjasist = document.getElementById("asistdiv");
-    let msjfalta = document.getElementById("faltadiv");
-    
-    var textotipo = document.getElementById("tipo")
-      tipo.setAttribute('value','asistencia');
-    if(msjretardo.hasAttribute('style') || msjfalta.hasAttribute('style') )
-       {
-        msjasist.removeAttribute('style', 'display: none');  
-       } 
-    if(!msjretardo.hasAttribute('style') )
-       {
-        msjretardo.setAttribute('style', 'display: none');
-        msjasist.removeAttribute('style', 'display: none');
-       }
-    if(!msjfalta.hasAttribute('style') )
-       {
-        msjfalta.setAttribute('style', 'display: none');
-        msjasist.removeAttribute('style', 'display: none');
-        }    
-         
+      var icontenido = document.getElementById("idcontenido")
+      icontenido.innerHTML = 
+        "<div class='form-group col-md-12 ' >"+
+          "<label for='exampleFormControlTextarea1'>Descripción de actividades:</label>"+
+          "<textarea class='form-control' id='actv' name='actv' rows='3' ></textarea>"+
+          "<br>" +  
+          "<input class='btn btn-primary'  id ='guardar' type='button' value='Guardar'>" +             
+        "</div>"
       },false);
 
     var botonRetardo = document.getElementById("retardoid")
     botonRetardo.addEventListener("click",function(){
-    let msjretardo = document.getElementById("retardodiv");
-    let msjfalta = document.getElementById("faltadiv");
-    let msjasist = document.getElementById("asistdiv");
-    
-    var textotipo = document.getElementById("tipo")
-      tipo.setAttribute('value','retardo');
-    if(msjasist.hasAttribute('style') || msjfalta.hasAttribute('style') )
-       {
-         msjretardo.removeAttribute('style', 'display: none');      
-       }
-    if(!msjasist.hasAttribute('style') )
-        {
-          msjasist.setAttribute('style', 'display: none');
-          msjretardo.removeAttribute('style', 'display: none');
-        }
-    if(!msjfalta.hasAttribute('style') )
-      {
-        msjfalta.setAttribute('style', 'display: none');
-        msjretardo.removeAttribute('style', 'display: none');
-      }
+      var icontenido = document.getElementById("idcontenido")
+          icontenido.innerHTML = 
+          "<div class='form-group col-md-12 '>"+
+            "<label for='exampleFormControlTextarea1'>Seleccione hora de llegada</label>"+
+            "<input type='time' class='form-control' id='horares'  name='horares'>"+
+            "<br>"+
+            "<input class='btn btn-primary'  id ='guardar' type='button' value='Guardar'>" +  
+          "</div>"
       },false);
 
     var botonFalta = document.getElementById("faltaid")
     botonFalta.addEventListener("click",function(){
-    let msjretardo = document.getElementById("retardodiv");
-    let msjfalta = document.getElementById("faltadiv");
-    let msjasist = document.getElementById("asistdiv");
-    
-    var textotipo = document.getElementById("tipo")
-      tipo.setAttribute('value','falta');
-
-    if(msjasist.hasAttribute('style') || msjretardo.hasAttribute('style') )
-      {
-        msjfalta.removeAttribute('style', 'display: none');       
-      }
-    if(!msjasist.hasAttribute('style') )
-      {
-        msjasist.setAttribute('style', 'display: none');
-        msjfalta.removeAttribute('style', 'display: none');
-      }
-    if(!msjretardo.hasAttribute('style') )
-      {
-        msjretardo.setAttribute('style', 'display: none');
-        msjfalta.removeAttribute('style', 'display: none');
-      }
+      var icontenido = document.getElementById("idcontenido")
+          icontenido.innerHTML = 
+          "<div class='form-group col-md-12'>"+
+            "<label for='exampleFormControlTextarea1'>Justificación:</label>"+
+            "<textarea class='form-control' id='justi' name='justi' rows='3'></textarea>"+
+            " <br>"+
+            "<input class='btn btn-primary'  id ='guardar' type='button' value='Guardar'>" +  
+          "</div>"
       },false);
 
   </script>
