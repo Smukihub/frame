@@ -229,36 +229,42 @@
     botonAsistencia.addEventListener("click",function(){
 
       var icontenido = document.getElementById("idcontenido")
+      var textotipo = document.getElementById("tipo")
+      tipo.setAttribute('value','asistencia');
       icontenido.innerHTML = 
         "<div class='form-group col-md-12 ' >"+
           "<label for='exampleFormControlTextarea1'>Descripción de actividades:</label>"+
           "<textarea class='form-control' id='actv' name='actv' rows='3' ></textarea>"+
           "<br>" +  
-          "<input class='btn btn-primary'  id ='guardar' type='button' value='Guardar'>" +             
+          "<input class='btn btn-primary'  id ='guardar' type='submit' value='Guardar'>" +             
         "</div>"
       },false);
 
     var botonRetardo = document.getElementById("retardoid")
     botonRetardo.addEventListener("click",function(){
       var icontenido = document.getElementById("idcontenido")
+      var textotipo = document.getElementById("tipo")
+      tipo.setAttribute('value','asistencia');
           icontenido.innerHTML = 
           "<div class='form-group col-md-12 '>"+
             "<label for='exampleFormControlTextarea1'>Seleccione hora de llegada</label>"+
             "<input type='time' class='form-control' id='horares'  name='horares'>"+
             "<br>"+
-            "<input class='btn btn-primary'  id ='guardar' type='button' value='Guardar'>" +  
+            "<input class='btn btn-primary'  id ='guardar' type='submit' value='Guardar'>" +  
           "</div>"
       },false);
 
     var botonFalta = document.getElementById("faltaid")
     botonFalta.addEventListener("click",function(){
       var icontenido = document.getElementById("idcontenido")
+      var textotipo = document.getElementById("tipo")
+      tipo.setAttribute('value','asistencia');
           icontenido.innerHTML = 
           "<div class='form-group col-md-12'>"+
             "<label for='exampleFormControlTextarea1'>Justificación:</label>"+
             "<textarea class='form-control' id='justi' name='justi' rows='3'></textarea>"+
             " <br>"+
-            "<input class='btn btn-primary'  id ='guardar' type='button' value='Guardar'>" +  
+            "<input class='btn btn-primary'  id ='guardar' type='submit' value='Guardar'>" +  
           "</div>"
       },false);
 
