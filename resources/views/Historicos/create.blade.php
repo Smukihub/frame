@@ -71,9 +71,9 @@
                 <div class="form-group col-md-12">
                   <label for="hora">Seleccionar tipo:</label>
                   <div class="form-group ">
-                    <input type="button" id="asistenciaid" class="btn btn-primary" value="Asistencia"></input>
-                    <input type="button" id="retardoid"  class="btn btn-warning" value="Retardo"></input>
-                    <input type="button" id="faltaid"  class="btn btn-danger" value="Falta"></input>
+                    <input type="button" id="tipo" class="btn btn-primary" value="Asistencia"></input>
+                    <input type="button" id="tipo"  class="btn btn-warning" value="Retardo"></input>
+                    <input type="button" id="tipo"  class="btn btn-danger" value="Falta"></input>
                  </div>
                 </div>
                 
