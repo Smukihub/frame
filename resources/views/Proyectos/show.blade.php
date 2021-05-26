@@ -6,6 +6,13 @@
 
 
 @section('content')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
+    <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}}</li>
+  </ol>
 <div class="container">
   <div class="row justify-content-center">
       <div class="col-md-8">

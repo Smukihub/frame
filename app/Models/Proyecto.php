@@ -22,4 +22,9 @@ class Proyecto extends Model
     {
         return $this->hasMany('App\Models\Horario');
     }
+
+    public function historicos()
+    {
+        return $this->hasMany('App\Models\Historico');
+    }
 }

@@ -16,15 +16,15 @@ class CreateHistoricosTable extends Migration
         Schema::create('historicos', function (Blueprint $table) {
             $table->id();
             
-
-            $table->integer('dia');
+            $table->date('fecha');
+            $table->enum('dia', ['Lunes', 'Martes','Miercoles','Jueves','Viernes']);
             $table->integer('hora');
             $table->enum('tipo', ['Asistencia', 'Retardo','Falta']);
             $table->time('horares')->nullable();
 
             $table->string('actv')->nullable();
             $table->string('justi')->nullable();
-            
+            $table->foreignId('proyecto_id')->references('id')->on('proyectos');
         });
     }
 

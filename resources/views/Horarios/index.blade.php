@@ -3,6 +3,12 @@
 
 
 @section('content') 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Horario</li>
+  </ol>
 <div class="card-body">
   <div>
     <table class="table table-hover table-bordered"  id="tbl-horario" >
@@ -129,52 +135,6 @@
     document.getElementById("tbl-horario").rows[{{$horario->hora}}].children[{{$horario->dia}}].innerText= actual + '{{substr($horario->proyecto->prestador->nombre,0,1)}}' + '{{substr($horario->proyecto->prestador->apellido,0,1)}}';  
   @endforeach
 
-  tbl  =  document.getElementById("tbl-horario").addEventListener('click',event => {
-    
-    if (event.target.tagName === 'TD') {
-      
-      let obj = { 
-        _token: '{{ csrf_token() }}',
-        dia :event.target.cellIndex,
-        hora : event.target.parentElement.rowIndex,
-        proyecto_id:'1',
-      };
-      
-
-      
-      ocupado = event.target.innerText;
-      if (ocupado) {
-      }else {
-        fetch('/Horarios', {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(obj)
-        })
-        .then(response => response.json())
-        .then(res=> {
-          hora= res.registro.hora;
-          dia = res.registro.dia;
-          nombre = res.registro.proyecto.nombre;
-          tabla = document.getElementById("tbl-horario");
-          document.getElementById("tbl-horario").rows[hora].children[dia].innerText=nombre;
-          x=1;
-          console.log("pintar en dia: " + res.registro.x + " con hora " + res.registro.y + "para el proyecto")
-          x++;
-        });
-      }
-        
-
-     
-
-      
-      
-      
-    }
-
-  });
-  
 
   
 

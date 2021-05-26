@@ -22,8 +22,9 @@ class seguimientosController extends Controller
     public function nuevo(Request $request,$id )
     {
         //horio del proyecto
+        $historicos = Historico::all();
         $proyecto = Proyecto::find($id);       
-        return view('Historicos.create',compact('proyecto'));
+        return view('Historicos.create',compact('proyecto','historicos'));
     }
 
     /**
@@ -42,10 +43,24 @@ class seguimientosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(Request $request)
     {
-        dd($request->all());
-        //
+        $valores = $request->all();
+        $id = $request->input('proyecto_id');
+        $proyecto = Proyecto::find($id);
+        
+        //$proyecto->save();
+
+        
+        $registro = new Proyecto();
+        
+        $registro->fill($valores);
+        $registro->save();
+
+
+
+        return redirect("/seguimientos/{proyectos_id}")->with('mensaje','Historicos agregado correctamente');
+
     }
 
     /**

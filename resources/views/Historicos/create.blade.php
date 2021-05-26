@@ -34,14 +34,22 @@
               <form action="/seguimientos/{{$proyecto->id}}" method="post" enctype="multipart/form-data">
               @csrf
                 <div class="form-group col-md-8">
+                  <label for="fecha">Fecha:</label>
+                  <input type="date" name="fecha" id="fecha" name="fecha" class="form-control" >
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="proyecto_id">Proyecto:</label>
+                  <input type="text"  id="proyecto_id" name="proyecto_id" class="form-control" value="{{$proyecto->id}}" disabled>{{$proyecto->nombre}} </input>
+                </div>
+                <div class="form-group col-md-8">
                   <label for="dia">Dia:</label>
                   <select id="dia"  name="dia" class="form-control" required>
                   <option selected disabled>Seleccione día</option>
-                    <option value="1">Lunes</option>
-                    <option value="2">Martes</option>
-                    <option value="3">Miercoles</option>
-                    <option value="4">Jueves</option>
-                    <option value="5">Viernes</option>
+                    <option value="Lunes">Lunes</option>
+                    <option value="Martes">Martes</option>
+                    <option value="Miercoles">Miercoles</option>
+                    <option value="Jueves">Jueves</option>
+                    <option value="Viernes">Viernes</option>
                   </select>
                   <div class="invalid-feedback">
                     Por favor, seleccione día
@@ -49,7 +57,7 @@
                 </div>
                 <div class="form-group col-md-8">
                   <label for="hora">Hora:</label>
-                  <select id="hora" name="hora" class="form-control">
+                  <select id="hora" name="hora" class="form-control" required>
                     <option selected disabled>Seleccione hora</option>
                     <option value="0">8 a.m - 9 a.m</option>
                     <option value="1">9 a.m - 10 a.m</option>
@@ -93,7 +101,7 @@
                   <br>
                 </div>
                 
-                <input type="submit" class="btn btn-primary" id="enviar" value="Guardar">               
+                <input type="submit" class="btn btn-primary"  value="Guardar">               
                
                 
               </form>

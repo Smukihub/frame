@@ -16,6 +16,7 @@
     <table class="table table-hover"   >
       <thead>
         
+        <th scope="col">Fecha</th>
         <th scope="col">Dia</th>
         <th scope="col">tipo</th>
         <th scope="col">acciones</th>
@@ -23,10 +24,11 @@
       <tbody>
         @forelse ($historicos as $historicos)
         <tr>
-            
+            <td>{{ $historicos->fecha }}</td>
             <td>{{ $historicos->dia }}</td>
-            <td>{{ $historicos->descripcion }}</td>
-            <td>botones</td>
+            <td>{{ $historicos->tipo }}</td>
+            
+            
          
         </tr>
     @empty

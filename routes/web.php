@@ -31,7 +31,7 @@ Route::get('seguimientos/{proyectos_id}','seguimientosController@index');
 Route::get('nuevo-seguimiento/{proyectos_id}','seguimientosController@nuevo');
 Route::post('seguimientos/{proyectos_id}','seguimientosController@store');
 
-Route::get('ver_horario/{proyectos_id}','VerControler@ver');
+Route::get('ver-horario/{proyectos_id}','VerControler@ver');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 

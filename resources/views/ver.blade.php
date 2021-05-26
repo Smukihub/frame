@@ -3,7 +3,13 @@
 
 
 @section('content') 
-HORARIO PARA EL PROYECTO: {{$proyecto->nombre}}</br>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
+    <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}}</li>
+  </ol>
 <div class="card-body">
   <div>
     <table class="table table-hover table-bordered"  id="tbl-horario" >
