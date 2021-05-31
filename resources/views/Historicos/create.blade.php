@@ -12,14 +12,14 @@
 
 @section('content')
 
-<header>
-    <div class="text-center">
-      <h1>
-        Control de asistencias del proyecto
-      </h1>
-    </div>
-  
-  </header>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
+    <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ $proyecto->nombre }} - Seguimiento</li>
+  </ol>
+</nav>
 <body>
   <div class="card mb-4 shadow-sm">
       <div class="card-header">
@@ -35,16 +35,16 @@
               @csrf
                 <div class="form-group col-md-8">
                   <label for="fecha">Fecha:</label>
-                  <input type="date" name="fecha" id="fecha" name="fecha" class="form-control" >
+                  <input type="date" name="fecha" id="fecha" name="fecha" class="form-control" required>
                 </div>
                 <div class="form-group col-md-8">
-                  <label for="seguimiento_id">Proyecto:</label>
-                  <input type="text"  id="seguimiento_id" name="seguimiento_id" class="form-control" value="{{$proyecto->nombre}}" disabled></input>
+                  <label for="proyecto_id">Proyecto:</label>
+                  <input type="text"  id="proyecto_id" name="proyecto_id" class="form-control" value="{{$proyecto->nombre}}" disabled></input>
                 </div>
                 <div class="form-group col-md-8">
                   <label for="dia">Dia:</label>
                   <select id="dia"  name="dia" class="form-control" required>
-                  <option selected disabled>Seleccione día</option>
+                 
                     <option value="Lunes">Lunes</option>
                     <option value="Martes">Martes</option>
                     <option value="Miercoles">Miercoles</option>
@@ -58,7 +58,7 @@
                 <div class="form-group col-md-8">
                   <label for="hora">Hora:</label>
                   <select id="hora" name="hora" class="form-control" required>
-                    <option selected disabled>Seleccione hora</option>
+                    
                     <option value="0">8 a.m - 9 a.m</option>
                     <option value="1">9 a.m - 10 a.m</option>
                     <option value="2">10 a.m - 11 a.m</option>
@@ -110,7 +110,7 @@
                   </tr>        
                 </thead>
                 <tbody>
-                  <tr aria-hora ="8">
+                  <tr  class="table table-sm table-bordered"  aria-hora ="8">
                     <th> 8 a.m. - 9 a.m. </th>
                     <td></td>
                     <td></td>
@@ -118,7 +118,7 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr aria-hora ="9" >
+                  <tr class="table table-sm table-bordered" aria-hora ="9" >
                     <th>9 a.m. - 10 a.m.</th>
                     <td></td>
                     <td></td>
@@ -126,7 +126,7 @@
                     <td></td>
                     <td></td>
                   </tr>
-                  <tr aria-hora ="10">
+                  <tr  class="table table-sm table-bordered" aria-hora ="10">
                     <th>10 a.m. - 11 a.m</th>
                       <td></td>
                       <td></td>
@@ -154,6 +154,15 @@
                 
                   <tr class="table table-sm table-bordered" > 
                     <th >1 p.m. - 2 p.m. </th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                  </tr>
+                
+                  <tr class="table table-sm table-bordered" > 
+                    <th >2 p.m. - 3 p.m. </th>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -231,10 +240,11 @@
       var icontenido = document.getElementById("idcontenido")
       var textotipo = document.getElementById("tipo")
       tipo.setAttribute('value','asistencia');
+     
       icontenido.innerHTML = 
         "<div class='form-group col-md-12 ' >"+
           "<label for='exampleFormControlTextarea1'>Descripción de actividades:</label>"+
-          "<textarea class='form-control' id='actv' name='actv' rows='3' ></textarea>"+
+          "<textarea class='form-control' id='actv' name='actv' rows='3' required></textarea>"+
           "<br>" +  
           "<input class='btn btn-primary'  id ='guardar' type='submit' value='Guardar'>" +             
         "</div>"
@@ -244,11 +254,11 @@
     botonRetardo.addEventListener("click",function(){
       var icontenido = document.getElementById("idcontenido")
       var textotipo = document.getElementById("tipo")
-      tipo.setAttribute('value','asistencia');
+      tipo.setAttribute('value','retardo');
           icontenido.innerHTML = 
           "<div class='form-group col-md-12 '>"+
             "<label for='exampleFormControlTextarea1'>Seleccione hora de llegada</label>"+
-            "<input type='time' class='form-control' id='horares'  name='horares'>"+
+            "<input type='time' class='form-control' id='horares'  name='horares' required>"+
             "<br>"+
             "<input class='btn btn-primary'  id ='guardar' type='submit' value='Guardar'>" +  
           "</div>"
@@ -258,11 +268,11 @@
     botonFalta.addEventListener("click",function(){
       var icontenido = document.getElementById("idcontenido")
       var textotipo = document.getElementById("tipo")
-      tipo.setAttribute('value','asistencia');
+      tipo.setAttribute('value','falta');
           icontenido.innerHTML = 
           "<div class='form-group col-md-12'>"+
             "<label for='exampleFormControlTextarea1'>Justificación:</label>"+
-            "<textarea class='form-control' id='justi' name='justi' rows='3'></textarea>"+
+            "<textarea class='form-control' id='justi' name='justi' rows='3' required></textarea>"+
             " <br>"+
             "<input class='btn btn-primary'  id ='guardar' type='submit' value='Guardar'>" +  
           "</div>"

@@ -28,6 +28,10 @@ Route::resource('Proyectos','ProyectoControler');
 Route::resource('Usuarios','UserControler');
 
 Route::get('seguimientos/{proyectos_id}','seguimientosController@index');
+Route::get('Historicos/{historico}','seguimientosController@show');
+Route::delete('Historicos/{historico}','seguimientosController@destroy');
+
+
 Route::get('nuevo-seguimiento/{proyectos_id}','seguimientosController@nuevo');
 Route::post('seguimientos/{proyectos_id}','seguimientosController@store');
 
