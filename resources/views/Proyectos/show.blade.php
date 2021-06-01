@@ -24,27 +24,28 @@
                 
               </div>                  
               <div class="card-body">
-                <table class="table table-bordered">
-                  <thead class="thead-dark">
+                <table class="table">
+                  <thead>
                     <tr>
-                      
                       <th scope="col">Nombre</th>
-                      <th scope="col">Descripcion</th>
-                
+                      <th scope="col">Descripción</th>
+                      <th scope="col">Prestador</th>
+                      <th scope="col">Responsable</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                     
+                      
                       <td>{{$proyecto->nombre}}</td>
                       <td>{{$proyecto->d_actividades}}</td>
-                      
-                     
+                      <td>{{$proyecto->prestador_id}}</td>
+                      <td>{{$proyecto->responsable_id}}</td>
                       
                     </tr>
-                    
+                  
                   </tbody>
-                </table>
+                </table> 
               </div>
           
 

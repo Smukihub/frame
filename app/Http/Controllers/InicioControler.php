@@ -14,7 +14,6 @@ class InicioControler extends Controller
 {
     
     public function inicio(){
-       
         return view('welcome' );
     }
     public function tablero(){
@@ -26,13 +25,11 @@ class InicioControler extends Controller
                 $usuarios = User::all();
                 $proyectos = Proyecto::all();
                 $horarios = Horario::all();
-              
                 return  view('tablero',compact('usuarios','proyectos','horarios'));
                 break;
             case 'Prestador':
                 $usuarios = User::all();
                 $proyectos = Proyecto::all();
-              
                 return  view('tablero',compact('usuarios','proyectos'));
                 break;
             case 'Auxiliar':
@@ -43,7 +40,8 @@ class InicioControler extends Controller
             case 'Externo':
                 $usuarios = User::all();
                 $proyectos = Proyecto::all();
-               return  view('tablero',compact('usuarios','proyectos'));
+                $horarios = Horario::all();
+                return  view('tablero',compact('usuarios','proyectos','horarios'));
                 break;
             case 'Aspirante':
                 $usuarios = User::all();

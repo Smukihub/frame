@@ -67,6 +67,7 @@ class ProyectoControler extends Controller
      */
     public function show($id)
     {
+        
         $proyecto = Proyecto::find($id);
         return view('Proyectos.show',compact('proyecto'));
     }
@@ -79,7 +80,7 @@ class ProyectoControler extends Controller
      */
     public function __construct()
     {
-        $this->middleware('jefe');
+        $this->middleware('rol');
     }
     public function edit($id)
     {
