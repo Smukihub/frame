@@ -10,16 +10,36 @@
 
 
 @section('content')
+@switch(Auth::user()->rol)
+    @case('Jefe')
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
+        <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
+        <li class="breadcrumb-item"><A HREF="javascript:javascript:history.go(-1)">Historicos</A></li>
+        <li class="breadcrumb-item active" aria-current="page">Historicos - Mostrar</li>
+      </ol>
+    </nav>
+        @break
+    @case('Auxiliar')
+    <nav aria-label="breadcrumb">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+          <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
+          
+          <li class="breadcrumb-item"><A HREF="javascript:javascript:history.go(-1)">Historicos</A></li>
+          <li class="breadcrumb-item active" aria-current="page">Historicos - Mostrar</li>
+        </ol>
+      </nav>
+        
+        @break
+    @default
+        
+@endswitch
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
-    <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
-    <li class="breadcrumb-item"><A HREF="javascript:javascript:history.go(-1)">Historicos</A></li>
-    <li class="breadcrumb-item active" aria-current="page">Historicos - Mostrar</li>
-  </ol>
-</nav>
+
 <div class="container">
   <div class="row justify-content-center">
       <div class="col-md-12">

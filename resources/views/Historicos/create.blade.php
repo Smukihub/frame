@@ -12,14 +12,30 @@
 
 @section('content')
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
-    <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{ $proyecto->nombre }} - Seguimiento</li>
-  </ol>
-</nav>
+@switch(Auth::user()->rol)
+    @case('Jefe')
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
+        <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}} - Seguimiento</li>
+      </ol>
+    </nav>
+        @break
+    @case('Auxiliar')
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}} - Seguimiento</li>
+      </ol>
+    </nav>
+        
+        @break
+    @default
+        
+@endswitch
 <body>
   <div class="card mb-4 shadow-sm">
       <div class="card-header">

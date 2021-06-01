@@ -7,6 +7,7 @@ use App\Models\Proyecto;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProyectoControler extends Controller
 {
