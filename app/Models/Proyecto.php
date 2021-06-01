@@ -27,4 +27,5 @@ class Proyecto extends Model
     {
         return $this->hasMany('App\Models\Historico');
     }
+    
 }

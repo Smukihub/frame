@@ -22,7 +22,7 @@ class ProyectoSeeder extends Seeder
             'nombre' => "Titulacion",
             'd_actividades' => "Proyecto Web" ,
             'prestador_id' => "4" ,
-            'responsable_id' => "2" ,
+            'responsable_id' => "6" ,
             'iniciales' =>"SFL",
             
         ]);

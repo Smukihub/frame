@@ -30,21 +30,21 @@
                         
                     </thead>
                     <tbody class="thead-light">
-                        @forelse ($proyectos as $proyectos)
-                            <tr> @if($proyectos->nombre)
+                        @forelse ($proyectos as $proyecto)
+                            <tr> @if($proyecto->nombre)
                             
                             @endif
                             
-                                <td>{{ $proyectos->nombre }}</td>
-                                <td>{{ $proyectos->d_actividades }}</td>
+                                <td>{{ $proyecto->nombre }}</td>
+                                <td>{{ $proyecto->d_actividades }}</td>
                                 <td>
-                                    <a href="/Proyectos/{{$proyectos->id}}/edit" class="btn btn-success">Editar</a>
-                                    <a href="/Proyectos/{{$proyectos->id}}" class="btn btn-warning">Mostrar</a>
-                                    <a href="/ver-horario/{{$proyectos->id}}" class="btn btn-primary">Horario</a> 
-                                    <a href="/seguimientos/{{$proyectos->id}}"  class="btn btn-info">Historico</a> 
-                                    <a href="/nuevo-seguimiento/{{$proyectos->id}}"  class="btn btn-dark">Seguimiento</a> 
+                                    <a href="/Proyectos/{{$proyecto->id}}/edit" class="btn btn-success">Editar</a>
+                                    <a href="/Proyectos/{{$proyecto->id}}" class="btn btn-warning">Mostrar</a>
+                                    <a href="/ver-horario/{{$proyecto->id}}" class="btn btn-primary">Horario</a> 
+                                    <a href="/seguimientos/{{$proyecto->id}}"  class="btn btn-info">Historico</a> 
+                                    <a href="/nuevo-seguimiento/{{$proyecto->id}}"  class="btn btn-dark">Seguimiento</a> 
                                         
-                                    <form action="/Proyectos/{{$proyectos->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
+                                    <form action="/Proyectos/{{$proyecto->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -57,7 +57,10 @@
                             </tr>
                         @endforelse
                     </tbody> 
-                </table>                          
+                </table>     
+                {{$proyectos->links()}}
+                             
+                
             </div>
             
 

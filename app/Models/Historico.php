@@ -13,4 +13,9 @@ class Historico extends Model
     public function proyecto(){
         return $this->hasOne('App\Models\Proyecto','id','proyecto_id');
     }
+    public function horaVisible()
+    {
+        return ($this->hora+8) . " a " . ($this->hora+9);
+    }
+
 }

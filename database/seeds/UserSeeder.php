@@ -75,6 +75,18 @@ class UserSeeder extends Seeder
             'status' => 0 ,
             'rol' => "Aspirante"  ,
         ]);
+        DB::table('users')->insert([
+            'nombre' => "Jose2",
+            'apellido' => "Hernandez2" ,
+            'telefono' => "9612445523" ,
+            'email' => "jose2@live.com" ,
+            'password' => Hash::make("12345678") ,
+            'numcontrol' => 162434520 ,
+            'path' => 'user.png' ,
+            'activo' => 1 ,
+            'status' => 0 ,
+            'rol' => "Auxiliar"  ,
+        ]);
 
     }
 }

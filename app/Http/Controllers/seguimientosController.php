@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Models\Historico;
 use App\Models\Horario;
 use App\Models\Proyecto;
@@ -47,6 +48,36 @@ class seguimientosController extends Controller
     public function store(Request $request, $id)
     {
         $valores = $request->all();
+        $fecha = $valores['fecha']; // $request->input('fecha'); // "2021-06-01";
+        // "01/06/2021" '06/01/2021'
+    
+        
+        $valores['dia'] = date("N",strtotime($fecha));
+        switch ($valores['dia']) {
+            case '1':
+                $valores['dia']="Lunes";
+                break;
+            case '2':
+                $valores['dia']="Martes";
+                break;
+            case '3':
+                $valores['dia']="Miercoles";
+                break;
+            case '4':
+                $valores['dia']="Jueves";
+                break;
+            case '5':
+                $valores['dia']="Viernes";
+                break;
+            case '6':
+                $valores['dia']="Sabado";
+                break;
+            default :
+                $valores['dia']="Domingo";
+                break;
+
+        }
+        //dd($valores['dia']);
         $registro = new Historico();
         $proyecto = Proyecto::find($id);
         $valores['proyecto_id']=$id;                

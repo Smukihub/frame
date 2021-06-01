@@ -56,8 +56,8 @@
                       
                       <td>{{$proyecto->nombre}}</td>
                       <td>{{$proyecto->d_actividades}}</td>
-                      <td>{{$proyecto->prestador_id}}</td>
-                      <td>{{$proyecto->responsable_id}}</td>
+                      <td>{{$proyecto->prestador->nombre}}</td>
+                      <td>{{$proyecto->responsable->nombre}}</td>
                       
                     </tr>
                   

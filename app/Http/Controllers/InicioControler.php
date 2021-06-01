@@ -17,10 +17,10 @@ class InicioControler extends Controller
         return view('welcome' );
     }
     public function tablero(){
-        
-        if (is_null(Auth::user())) die;
+        $user = Auth::user();
+        if (is_null($user)) die;
 
-        switch (Auth::user()->rol) {
+        switch ($user->rol) {
             case 'Jefe':
                 $usuarios = User::all();
                 $proyectos = Proyecto::all();
@@ -34,7 +34,7 @@ class InicioControler extends Controller
                 break;
             case 'Auxiliar':
                 $usuarios = User::all();
-                $proyectos = Proyecto::all();
+                $proyectos = Proyecto::where('responsable_id',$user->id)->get();
                 return  view('tablero',compact('usuarios','proyectos'));
                 break;
             case 'Externo':

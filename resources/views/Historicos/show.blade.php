@@ -62,7 +62,7 @@
                       
                       <td>{{$historico->fecha}}</td>
                       <td>{{$historico->dia}}</td>
-                      <td>{{$historico->hora}}</td>
+                      <td>{{$historico->horaVisible()}}</td>
                       <td>{{$historico->tipo}}</td>
                       <td>
                                 

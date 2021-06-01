@@ -13,7 +13,7 @@ class ProyectoControler extends Controller
 {
     public function index()
     {
-        $proyectos = Proyecto::orderBy('id','desc')->paginate(10);
+        $proyectos = Proyecto::orderBy('id','desc')->paginate(2);
         return view('Proyectos.index',compact('proyectos'));
     }
 
