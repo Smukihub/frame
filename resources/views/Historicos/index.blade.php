@@ -29,10 +29,24 @@
     @default
         
 @endswitch
+
+
+
 <div class="container">
+  <div class="row">
+    <nav class="navbar navbar-light float-right">       
+      <form class="form-inline">
+        <input name="buscar" class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
+      </form>
+    </nav>
+  </div>
   <div class="row justify-content-center">
-      <div class="col-md-8">
+      <div class="col-md-12">
+      
+        
           <div class="card">
+            
               <div class="card-header">{{ __('Historicos') }}
                 
               </div>                  
@@ -42,24 +56,34 @@
                     
                     <th scope="col">Fecha</th>
                     <th scope="col">Dia</th>
+                    <th scope="col">Hora</th>
                     <th scope="col">Tipo</th>
-                    <th scope="col">Acciones</th>
+                    <th scope="col">Detalles</th>
+                    </tr>
                   </thead>
                   <tbody>
-                    @forelse ($historicos as $historicos)
+                    @forelse ($historico as $historicos)
                     <tr>
                         <td>{{ $historicos->fecha }}</td>
                         <td>{{ $historicos->dia }}</td>
+                        <td>{{$historicos->horaVisible()}}</td>
                         <td>{{ $historicos->tipo }}</td>
                          
                         <td>
-                         
-                          <a href="/Historicos/{{$historicos->id}}" class="btn btn-warning">Mostrar</a>
-                          <form action="/Historicos/{{$historicos->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="btn btn-danger">Eliminar</button>
-                          </form>    
+                          @switch($historicos->tipo)
+                          @case('Asistencia')
+                          
+                          {{$historicos->actv}}
+                              @break
+                          @case('Retardo')
+
+                          {{$historicos->horares}}
+                              @break
+                          @case('Falta')
+                          {{$historicos->justi}}
+                          
+                              
+                      @endswitch
                       </td>
             
                      

@@ -19,12 +19,79 @@
   @switch(Auth::user()->rol)
 
       @case('Aspirante')
+        
+        <div class="container">
+          <div class="card">
+            <div class="card-header">
+              <h3>
+                Espera a que te den de alta
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group row">
+                <label  class="col-sm-2 col-form-label">Subir uCarta</label>
+                <div class="col-sm-10">
+                  <input type="file" readonly class="form-control-plaintext" id="archivoInput" onchange="return validarExt()">
+                </div>
+              </div>
+              <div id="visorArchivo">
 
-      <h1>
+              </div>
+              <button id="guardar"
+              class ="btn btn-info"
+              >aceptar
+            </button>
+            </div>
+          </div>
 
-        Espera a que te den de alta
+        </div>
+        <script>
+          var guardar = document.getElementById("guardar")
+          guardar.addEventListener("click",function(){
+            let obj = { 
+              _token: '{{ csrf_token() }}',
+              carta : carta:carta.value,
+              };
+              fetch('/tablero', {
+              method: 'POST',
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(obj)
+              })        
+              .then(response => response.json())
+              .then(res=> {
+              carta= res.registro.carta;
+            });   
+          });
+      
+          function validarExt()
+          {
+              var archivoInput = document.getElementById('archivoInput');
+              var archivoRuta = archivoInput.value;
+              var extPermitidas = /(.pdf)$/i;
+              if(!extPermitidas.exec(archivoRuta)){
+                  alert('Asegurese de haber seleccionado un PDF');
+                  archivoInput.value = '';
+                  return false;
+              }
 
-      </h1>
+              else
+              {
+                  //PRevio del PDF
+                  if (archivoInput.files && archivoInput.files[0]) 
+                  {
+                      var visor = new FileReader();
+                      visor.onload = function(e) 
+                      {
+                          document.getElementById('visorArchivo').innerHTML = 
+                          '<embed src="'+e.target.result+'" width="500" height="375" />';
+                      };
+                      visor.readAsDataURL(archivoInput.files[0]);
+                  }
+              }
+          }
+        </script>
       @break
       @case( 'Jefe' )
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">  
@@ -293,7 +360,7 @@
       
               </div>
           </div>
-      </div>
+        </div>
 
       @break
       @case('Externo')

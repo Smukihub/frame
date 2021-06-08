@@ -15,7 +15,6 @@ class CreateProyectosTable extends Migration
     {
         Schema::create('proyectos', function (Blueprint $table) {
             $table->id();
-           
             $table->string('nombre');
             $table->string('d_actividades');
             $table->foreignId('prestador_id')
@@ -24,6 +23,12 @@ class CreateProyectosTable extends Migration
             $table->foreignId('responsable_id')
             ->references('id')
             ->on('users');
+           // $table->foreignId('carta_id')
+            //->references('id')
+            //->on('users')->nullable();
+            $table->integer('total')->nullable();
+            $table->integer('cuentas')->default(0);
+            
         });
     }
 

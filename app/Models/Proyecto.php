@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Proyecto extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['nombre','d_actividades','prestador_id','responsable_id'];
+    protected $fillable = ['nombre','d_actividades','prestador_id','responsable_id','total','cuentas','carta_id'];
 
     public function prestador(){
         return $this->hasOne('App\Models\User','id','prestador_id');
@@ -17,6 +17,9 @@ class Proyecto extends Model
         return $this->hasOne('App\Models\User','id','responsable_id');
     }
 
+    public function carta(){
+        return $this->hasOne('App\Models\User','id','carta_id');
+    }
 
     public function horarios()
     {

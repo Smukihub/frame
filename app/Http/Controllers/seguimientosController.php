@@ -17,9 +17,9 @@ class seguimientosController extends Controller
      */
     public function index(Request $request,$id )
     {
-        $historicos = Historico::where('proyecto_id',$id)->get();
+        $historico = Historico::where('proyecto_id',$id)->get();
         $proyecto = Proyecto::find($id);  
-        return view('Historicos.index',compact('proyecto','historicos'));
+        return view('Historicos.index',compact('proyecto','historico'));
     }
     public function nuevo(Request $request,$id )
     {
@@ -84,7 +84,7 @@ class seguimientosController extends Controller
         $registro->fill($valores);
         $registro->save();
 
-        return redirect("/Proyectos")->with('mensaje','Proyecto agregado correctamente');
+        return redirect("/tablero")->with('mensaje','Historico agregado correctamente');
       
 
     }

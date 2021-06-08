@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Proyecto;
 use App\Models\User;
@@ -28,7 +29,8 @@ class ProyectoControler extends Controller
         $usuarios = User::all();
         $prestadores = User::where("rol","Aspirante")->get();
         $responsables = User::where("rol","Auxiliar")->get();
-        return view('Proyectos.create',compact('usuarios','proyectos','prestadores','responsables'));
+        $cartas = User::where("carta")->get();
+        return view('Proyectos.create',compact('usuarios','proyectos','prestadores','responsables','cartas'));
     }
 
     /**
@@ -66,9 +68,9 @@ class ProyectoControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Proyecto $proyecto)
     {
-        
+        $this->authorize('view', $proyecto);
         $proyecto = Proyecto::find($id);
         return view('Proyectos.show',compact('proyecto'));
     }

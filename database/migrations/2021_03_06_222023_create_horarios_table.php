@@ -26,10 +26,8 @@ class CreateHorariosTable extends Migration
            //$table->tinyInteger('estado')->default(1);
             //$table->dateTime('start');
             //$table->dateTime('end');
-           $table->foreignId('proyecto_id')
-           ->references('id')->on('proyectos');
-            
-           
+            $table->foreignId('proyecto_id')
+            ->references('id')->on('proyectos');
         });
     }
 

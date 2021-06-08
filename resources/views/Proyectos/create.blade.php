@@ -23,12 +23,12 @@
 
 @endif
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
+<ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Inicio</a></li>
     <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
     <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
     <li class="breadcrumb-item active" aria-current="page">Registro</li>
-  </ol>
+</ol>
 </nav>
 <div class="container">
     <div class="row justify-content-center">
@@ -54,24 +54,34 @@
                         <div class="form-group">
                             <label>Prestador:</label>
                             <select name="prestador_id">
-                              @forelse($prestadores as $prestador)
-                                  <option value="{{$prestador->id}}">{{$prestador->nombre}}</option>
-                                  @empty
-                                    <option disable>Sin aspirantes</option>
-                              @endforelse
+                            @forelse($prestadores as $prestador)
+                                <option value="{{$prestador->id}}">{{$prestador->nombre}}</option>
+                                @empty
+                                <option disable>Sin aspirantes</option>
+                            @endforelse
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Responsable:</label>
                             <select name="responsable_id">
-                              @forelse($responsables as $responsable)
-                              <option value="{{$responsable->id}}">{{$responsable->nombre}}</option>
-                                  
-                              @empty
-                                  
-                              @endforelse ($responsables as $responsable)
-                                  
-                             
+                            @forelse($responsables as $responsable)
+                            <option value="{{$responsable->id}}">{{$responsable->nombre}}</option>
+                                
+                            @empty
+                                
+                            @endforelse ($responsables as $responsable)
+                                
+                            
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Carta:</label>
+                            <select name="carta_id">
+                            @forelse($cartas as $carta)
+                                <option value="{{$carta->id}}">{{$usuarios->carta}}</option>
+                                @empty
+                                <option disable>Sin aspirantes</option>
+                            @endforelse
                             </select>
                         </div>
 

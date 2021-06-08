@@ -19,6 +19,7 @@ Route::get('version',function()
     phpinfo();
 });
 Route::get('tablero','InicioControler@tablero');
+
 Auth::routes();
 
 Route::resource('Horarios','HorarioControler');

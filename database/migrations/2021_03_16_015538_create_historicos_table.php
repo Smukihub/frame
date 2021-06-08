@@ -17,7 +17,7 @@ class CreateHistoricosTable extends Migration
             $table->id();
             
             $table->date('fecha');
-            $table->enum('dia', ['Lunes', 'Martes','Miercoles','Jueves','Viernes']);
+            $table->enum('dia', ['Lunes', 'Martes','Miercoles','Jueves','Viernes'])->nullable();
             $table->integer('hora');
             $table->enum('tipo', ['Asistencia', 'Retardo','Falta']);
             $table->time('horares')->nullable();

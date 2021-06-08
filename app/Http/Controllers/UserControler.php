@@ -59,6 +59,13 @@ class UserControler extends Controller
             $imagen->move($ruta_destino, $nombre_de_archivo);
             $valores['path']=$nombre_de_archivo;
         }
+        $carta = $request->file('carta');
+        if(!is_null($carta)){
+            $ruta_destino = public_carta('/storage/cartas/');
+            $nombre_de_carta = $carta->getClientOriginalName();
+            $carta->move($ruta_destino, $nombre_de_carta);
+            $valores['carta']=$nombre_de_carta;
+        }
         
         $registro = new User();
         $registro->fill($valores);

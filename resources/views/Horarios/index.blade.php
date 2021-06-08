@@ -23,7 +23,7 @@
         </tr>        
       </thead>
       <tbody>
-        <tr aria-hora ="8">
+        <tr class="table table-sm table-bordered"  aria-hora ="8">
           <th>8 a.m. - 9 a.m.</th>
           <td></td>
           <td></td>
@@ -31,7 +31,7 @@
           <td></td>
           <td></td>
         </tr>
-        <tr aria-hora ="9" >
+        <tr class="table table-sm table-bordered"  aria-hora ="9" >
           <th>9 a.m. - 10 a.m. </th>
           <td></td>
           <td></td>
@@ -39,7 +39,7 @@
           <td></td>
           <td></td>
         </tr>
-        <tr aria-hora ="10">
+        <tr class="table table-sm table-bordered"  aria-hora ="10">
           <th>10 a.m. - 11 a.m.</th>
             <td></td>
             <td></td>
@@ -91,7 +91,7 @@
             <td></td>
         </tr>
         <tr class="table table-sm table-bordered" > 
-          <td  > 5 p.m. - 6 p.m. </th>
+          <th  > 5 p.m. - 6 p.m. </th>
             <td></td>
             <td></td>
             <td></td>
@@ -127,16 +127,54 @@
   </div>
 </div>
 </div>
-<br>conjunto
+
 <script>
   @foreach ($horarios as $horario)
     actual= document.getElementById("tbl-horario").rows[{{$horario->hora}}].children[{{$horario->dia}}].innerText;
     if (actual!="") actual +=", ";
     document.getElementById("tbl-horario").rows[{{$horario->hora}}].children[{{$horario->dia}}].innerText= actual + '{{substr($horario->proyecto->prestador->nombre,0,1)}}' + '{{substr($horario->proyecto->prestador->apellido,0,1)}}';  
   @endforeach
-
-
-  
-
-</script>
+  tbl  =  document.getElementById("tbl-horario").addEventListener('click',event => {
+    
+    if (event.target.tagName === 'TD') {
+      
+      let obj = { 
+        _token: '{{ csrf_token() }}',
+        dia :event.target.cellIndex,
+        hora : event.target.parentElement.rowIndex,
+        proyecto_id:'1',
+      };
+      ocupado = event.target.innerText;
+      if (ocupado) {
+        console.log('remover de la base de datos');
+        console.log(event.target.dataset.id);
+        let id = event.target.dataset.id;
+        fetch('/Horarios/${id}', {
+          method: 'DELETE',
+          })
+          .then(res => res.json())
+        }
+          else {
+            fetch('/Horarios', {
+              method: 'POST',
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(obj)
+              })
+        .then(response => response.json())
+        .then(res=> {
+          hora= res.registro.hora;
+          dia = res.registro.dia;
+          nombre = res.registro.proyecto.nombre;
+          tabla = document.getElementById("tbl-horario");
+          document.getElementById("tbl-horario").rows[hora].children[dia].innerText=nombre;
+          x=1;
+          console.log("pintar en dia: " + res.registro.x + " con hora " + res.registro.y + "para el proyecto")
+          x++;
+        });
+      }
+    }
+  });
+  </script>
 @endsection

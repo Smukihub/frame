@@ -55,22 +55,9 @@
                 </div>
                 <div class="form-group col-md-8">
                   <label for="proyecto_id">Proyecto:</label>
-                  <input type="text"  id="proyecto_id" name="proyecto_id" class="form-control" value="{{$proyecto->nombre}}" disabled></input>
+                  <input type="text"  id="proyecto_id" name="proyecto_id" class="form-control" value="{{$proyecto->nombre}}" disabled> </input>
                 </div>
-                <div class="form-group col-md-8">
-                  <label for="dia">Dia:</label>
-                  <select id="dia"  name="dia" class="form-control" required>
-                 
-                    <option value="Lunes">Lunes</option>
-                    <option value="Martes">Martes</option>
-                    <option value="Miercoles">Miercoles</option>
-                    <option value="Jueves">Jueves</option>
-                    <option value="Viernes">Viernes</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Por favor, seleccione día
-                  </div>
-                </div>
+
                 <div class="form-group col-md-8">
                   <label for="hora">Hora:</label>
                   <select id="hora" name="hora" class="form-control" required>
@@ -103,8 +90,7 @@
               <div id="idcontenido">
 
               </div>
-             
- 
+
                 
                 
                 
@@ -256,7 +242,7 @@
       var icontenido = document.getElementById("idcontenido")
       var textotipo = document.getElementById("tipo")
       tipo.setAttribute('value','asistencia');
-     
+
       icontenido.innerHTML = 
         "<div class='form-group col-md-12 ' >"+
           "<label for='exampleFormControlTextarea1'>Descripción de actividades:</label>"+
@@ -297,15 +283,4 @@
   </script>
 
 </body>
-
-   
-          
-       
-        
-     
-  
-  
-     
-     
-  
 @endsection
