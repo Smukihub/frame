@@ -52,8 +52,7 @@
               </div>                  
               <div class="card-body">
                 <table class="table table-hover"   >
-                  <thead>
-                    
+                  <thead>                   
                     <th scope="col">Fecha<a href="/seguimientos/{{$proyecto->id}}?oAF=si">A</a> <a href="/seguimientos/{{$proyecto->id}}?oDF=si">D</a> F</th>
                     <th scope="col">Dia<a href="/seguimientos/{{$proyecto->id}}?oAD=si">A</a> <a href="/seguimientos/{{$proyecto->id}}?oDD=si">D</a> F</th>
                     <th scope="col">Hora<a href="/seguimientos/{{$proyecto->id}}?oAH=si">A</a> <a href="/seguimientos/{{$proyecto->id}}?oDH=si">D</a> F</th>
