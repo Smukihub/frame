@@ -29,7 +29,7 @@ class InicioControler extends Controller
                 break;
             case 'Prestador':
                 $usuarios = User::all();
-                $proyectos = Proyecto::all();
+                $proyectos = Proyecto::where('prestador_id',$user->id)->get();
                 return  view('tablero',compact('usuarios','proyectos'));
                 break;
             case 'Auxiliar':

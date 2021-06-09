@@ -271,10 +271,10 @@
                   
                   <tbody>
                   
-                    @forelse ($proyectos as $proyectos)
+                    @forelse ($proyectos as $proyecto)
                     <tr class="table table-sm table-bordered" >
                     
-                      <td scope="row">{{$proyectos->nombre}}</th>
+                      <td scope="row">{{$proyecto->nombre}}</th>
                       
                     </tr>
                   
@@ -291,21 +291,22 @@
           </div>
         </div> 
         <br> 
+
         <div class="container">
           <div class="card-deck mb-3 text-center">
-            <div class="card mb-4 shadow-sm">
-              <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Avance de Proyecto 1</h4>
+
+            @foreach ($proyectos as $proyecto)
+              <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                  <h4 class="my-0 font-weight-normal">Avance del Proyecto {{$proyecto->nombre}}</h4>
+                </div>   
+                <div class="card-body">
+                  {{$proyecto->cuentas}} de {{$proyecto->total}}
+                </div>
               </div>
-            
-            </div>
-            <div class="card mb-4 shadow-sm">
-              <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Avance de Proyecto 2</h4>
-              </div>
-              
-            </div>
-          
+                
+            @endforeach          
+
           </div>
         </div>  
         <script>
@@ -317,6 +318,7 @@
         </script>
       @break
       @case('Auxiliar')
+      @case('Prestador')
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">  
           <h1>
             Tablero - Auxiliar
@@ -508,8 +510,6 @@
             document.getElementById("tbl-horario").rows[{{$horario->hora}}].children[{{$horario->dia}}].innerText= actual + '{{substr($horario->proyecto->prestador->nombre,0,1)}}' + '{{substr($horario->proyecto->prestador->apellido,0,1)}}';  
           @endforeach
         </script> 
-      @break
-      @case('Prestador')
       @break
   @endswitch
 @endsection

@@ -103,9 +103,12 @@ class HorarioControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $booking = Booking::where('id',$request->id)->delete();
-        return Response::json($booking);
+
+        $registro = Horario::where('dia',$request->dia)->where('hora',$request->hora)->get();       
+        Horario::where('dia',$request->dia)->where('hora',$request->hora)->delete();       
+        
+        return json_encode(["msg" => "Horario eliminado", "registro" => $registro]); 
     }
 }

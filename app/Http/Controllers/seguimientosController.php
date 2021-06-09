@@ -17,7 +17,52 @@ class seguimientosController extends Controller
      */
     public function index(Request $request,$id )
     {
-        $historico = Historico::where('proyecto_id',$id)->get();
+
+
+        $ordenado = "";
+        $valores = $request->all();
+        foreach ($valores as $orden => $value) {
+            if($value != "") {
+                $ordenado = $orden;
+                break;
+            }
+        }
+        //dd($ordenado);
+        switch ($ordenado) {
+            case 'oAF':
+                $historico = Historico::where('proyecto_id',$id)->orderBy('fecha','asc')->get();
+                break;
+            case 'oDF':
+                $historico = Historico::where('proyecto_id',$id)->orderBy('fecha','desc')->get();
+                break;            
+            case 'oAH':
+                $historico = Historico::where('proyecto_id',$id)->orderBy('hora','asc')->get();
+                break;            
+            case 'oDH':
+                $historico = Historico::where('proyecto_id',$id)->orderBy('hora','desc')->get();
+                break;            
+            case 'oAD':
+                $historico = Historico::where('proyecto_id',$id)->orderBy('dia','asc')->get();
+                break;            
+            case 'oDD':
+                $historico = Historico::where('proyecto_id',$id)->orderBy('dia','desc')->get();
+                break;            
+            case 'oAT':
+                $historico = Historico::where('proyecto_id',$id)->orderBy('tipo','asc')->get();
+                break;            
+            case 'oDT':
+                $historico = Historico::where('proyecto_id',$id)->orderBy('tipo','desc')->get();
+                break;            
+
+            default:
+                $historico = Historico::where('proyecto_id',$id)->get();
+                break;
+        }
+        
+        // si viene oAF
+        // si viene oDF
+
+        
         $proyecto = Proyecto::find($id);  
         return view('Historicos.index',compact('proyecto','historico'));
     }
@@ -95,10 +140,11 @@ class seguimientosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $historico = Historico::find($id);
-       
+
+
+        $historico = Historico::find($id);  
         return view('Historicos.show',compact('historico'));
     }
 

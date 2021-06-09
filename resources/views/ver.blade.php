@@ -196,10 +196,23 @@
             console.log('remover de la base de datos');
             console.log(event.target.dataset.id);
             let id = event.target.dataset.id;
-            fetch('/Horarios/${id}', {
-          method: 'DELETE',
-        })
-        .then(res => res.json())
+            fetch('/Horarios/' + id, {
+              method: 'DELETE',
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(obj)
+            })
+          .then(res => res.json())
+          .then(res=> {
+              hora= res.registro[0].hora;
+              dia = res.registro[0].dia;
+              tabla = document.getElementById("tbl-horario");
+              document.getElementById("tbl-horario").rows[hora].children[dia].innerText="";
+              x=1;
+              console.log("pintar en dia: " + res.registro.x + " con hora " + res.registro.y + "para el proyecto")
+              x++;
+            });
           
     
           }else {

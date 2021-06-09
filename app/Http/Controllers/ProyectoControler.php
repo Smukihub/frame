@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Proyecto;
+use App\Models\Historico;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
@@ -70,9 +71,24 @@ class ProyectoControler extends Controller
      */
     public function show($id, Proyecto $proyecto)
     {
-        $this->authorize('view', $proyecto);
+        
         $proyecto = Proyecto::find($id);
-        return view('Proyectos.show',compact('proyecto'));
+        $this->authorize('view', $proyecto);
+        /* se debe de actualizar el cuantas */
+        $registros = Historico::where('proyecto_id', $proyecto->id)->where('tipo','<>','Falta')->get();
+        
+        $acumular = 0;
+        foreach ($registros as $registro) {
+            //dd($registro);
+            //if( $registro->tipo == "Asistencia" ){
+                $acumular+=$registro->cuantas;
+            //}
+            
+        }
+
+        $proyecto->cuentas = $acumular;
+        $proyecto->save();
+		return view('Proyectos.show',compact('proyecto'));
     }
 
     /**

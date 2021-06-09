@@ -54,10 +54,10 @@
                 <table class="table table-hover"   >
                   <thead>
                     
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Dia</th>
-                    <th scope="col">Hora</th>
-                    <th scope="col">Tipo</th>
+                    <th scope="col">Fecha<a href="/seguimientos/{{$proyecto->id}}?oAF=si">A</a> <a href="/seguimientos/{{$proyecto->id}}?oDF=si">D</a> F</th>
+                    <th scope="col">Dia<a href="/seguimientos/{{$proyecto->id}}?oAD=si">A</a> <a href="/seguimientos/{{$proyecto->id}}?oDD=si">D</a> F</th>
+                    <th scope="col">Hora<a href="/seguimientos/{{$proyecto->id}}?oAH=si">A</a> <a href="/seguimientos/{{$proyecto->id}}?oDH=si">D</a> F</th>
+                    <th scope="col">Tipo <a href="/seguimientos/{{$proyecto->id}}?oAT=si">A</a> <a href="/seguimientos/{{$proyecto->id}}?oDT=si">D</a> F</th>
                     <th scope="col">Detalles</th>
                     </tr>
                   </thead>
@@ -90,7 +90,7 @@
                     </tr>
                       @empty
                         <tr>
-                            <td colspan="3">Sin  registros</td>
+                            <td colspan="5">Sin  registros</td>
                         </tr>
                       @endforelse
                         

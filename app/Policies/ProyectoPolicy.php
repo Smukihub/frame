@@ -27,10 +27,14 @@ class ProyectoPolicy
      * @param  \App\Models\User  $user
      * @param  \App\Proyecto  $proyecto
      * @return mixed
+	 
+	 1 == "1"
+	    politica()
+	 
      */
     public function view(User $user, Proyecto $proyecto)
     {
-        return $user->id === $proyecto->responsable_id;
+        return $user->id === $proyecto->responsable_id ||  $user->rol == "Jefe"  ;
     }
 
     /**

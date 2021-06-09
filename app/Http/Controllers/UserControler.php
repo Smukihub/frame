@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\User;
 
@@ -21,10 +22,17 @@ class UserControler extends Controller
     {
         $this->middleware('jefe');
     }
-    public function index()
+    public function index(Request $request)
     {
+        //puede venir por request
+        $pagina="";
+        $pagina =$request->input('pag_usuarios', Session::get('pag_usuarios',1));
+//        dd($pagina);
+        Session::put('pag_usuarios',$pagina);
         
-        $usuarios = User::orderBy('id','desc')->paginate(2);
+
+
+        $usuarios = User::orderBy('id','desc')->paginate(2,['*'],'pag_usuarios',$pagina);
         return view('Usuarios.index',compact('usuarios'));
     }
 

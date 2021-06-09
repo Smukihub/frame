@@ -34,6 +34,7 @@ Route::delete('Historicos/{historico}','seguimientosController@destroy');
 
 
 Route::get('nuevo-seguimiento/{proyectos_id}','seguimientosController@nuevo');
+//Route::get('ver-historico/{proyectos_id}','seguimientosController@');
 Route::post('seguimientos/{proyectos_id}','seguimientosController@store');
 
 Route::get('ver-horario/{proyectos_id}','VerControler@ver');

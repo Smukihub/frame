@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Historico extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['fecha','dia','hora','tipo','actv','horares','justi','proyecto_id'];
+    protected $fillable = ['fecha','dia','hora','tipo','actv','horares','justi','cuantas','proyecto_id'];
     
     public function proyecto(){
         return $this->hasOne('App\Models\Proyecto','id','proyecto_id');

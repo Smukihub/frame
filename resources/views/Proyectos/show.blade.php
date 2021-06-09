@@ -48,7 +48,7 @@
                       <th scope="col">Descripción</th>
                       <th scope="col">Prestador</th>
                       <th scope="col">Responsable</th>
-                      
+                      <th scope="col">Avance</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -58,6 +58,7 @@
                       <td>{{$proyecto->d_actividades}}</td>
                       <td>{{$proyecto->prestador->nombre}}</td>
                       <td>{{$proyecto->responsable->nombre}}</td>
+                      <td>{{$proyecto->cuentas + 0}} de {{$proyecto->total}}</td>
                       
                     </tr>
                   
