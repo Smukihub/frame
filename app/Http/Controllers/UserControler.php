@@ -24,6 +24,10 @@ class UserControler extends Controller
     }
     public function index(Request $request)
     {
+        $nombre = $request->get('buscar');
+        //dd($nombre);
+        $buscar = User::nombre($nombre)->apellido($nombre);
+
         //puede venir por request
         $pagina="";
         $pagina =$request->input('pag_usuarios', Session::get('pag_usuarios',1));
@@ -33,7 +37,7 @@ class UserControler extends Controller
 
 
         $usuarios = User::orderBy('id','desc')->paginate(2,['*'],'pag_usuarios',$pagina);
-        return view('Usuarios.index',compact('usuarios'));
+        return view('Usuarios.index',compact('usuarios','buscar'));
     }
 
     /**

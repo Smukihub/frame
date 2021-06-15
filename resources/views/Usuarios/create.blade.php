@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
- <script src="/bootstrap-4.5.3-dist/js/jquery-3.5.1.min.js"></script>
-  <script src="/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <script src="/bootstrap-4.5.3-dist/js/jquery-3.5.1.min.js"></script>
-  <script src="/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="/bootstrap-4.5.3-dist/js/jquery-3.5.1.min.js"></script>
+    <script src="/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="/bootstrap-4.5.3-dist/js/jquery-3.5.1.min.js"></script>
+    <script src="/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
 
 @section('content')
@@ -78,6 +78,12 @@
                                 <option>Aspirante</option>
                             </select>
                         </div> 
+                        <div class="form-group ">
+                            <label  class="col-sm-2 col-form-label">Subir uCarta</label>
+                            <div class="col-sm-10">
+                                <input type="file" readonly class="form-control-plaintext" id="archivoInput" onchange="return validarExt()">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input id="email" type="email" name="email" class="form-control" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -98,4 +104,33 @@
         </div>
     </div>
 </div>
+<script>
+
+    function validarExt()
+    {
+        var archivoInput = document.getElementById('archivoInput');
+        var archivoRuta = archivoInput.value;
+        var extPermitidas = /(.pdf)$/i;
+        if(!extPermitidas.exec(archivoRuta)){
+            alert('Asegurese de haber seleccionado un PDF');
+            archivoInput.value = '';
+            return false;
+        }
+
+        else
+        {
+            //Previo del PDF
+            if (archivoInput.files && archivoInput.files[0]) 
+            {
+                var visor = new FileReader();
+                visor.onload = function(e) 
+                {
+                    document.getElementById('visorArchivo').innerHTML = 
+                    '<embed src="'+e.target.result+'" width="500" height="375" />';
+                };
+                visor.readAsDataURL(archivoInput.files[0]);
+            }
+        }
+    }
+</script>
 @endsection

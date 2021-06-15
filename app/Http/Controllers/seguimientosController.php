@@ -18,6 +18,9 @@ class seguimientosController extends Controller
     public function index(Request $request,$id )
     {
 
+        $fecha = $request->get('buscar');
+        //dd($fecha);
+        $historico = Historico::where('fecha','like',"%fecha%");
 
         $ordenado = "";
         $valores = $request->all();
@@ -129,8 +132,8 @@ class seguimientosController extends Controller
         $registro->fill($valores);
         $registro->save();
 
-        return redirect("/tablero")->with('mensaje','Historico agregado correctamente');
-      
+        return redirect("/Proyectos")->with('mensaje','Historico agregado correctamente');
+    
 
     }
 

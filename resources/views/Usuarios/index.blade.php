@@ -17,46 +17,59 @@
 </nav>
 
 <div class="container">
+
     <div class="row justify-content-center">
+  
         <div class="col-md-8">
+            <div class="row">
+                <nav class="navbar navbar-light float-right">       
+                    <form class="form-inline">
+                    <input name="buscar" class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
+                    </form>
+                </nav>
+            </div>
             <div class="card">
                 
                 <a href="Usuarios/create" class="btn btn-primary form-control" >Agregar Usuario</a>
             </div>
             <div class="card-body">
-               
-                    <table  class="table table-striped">
-                        <thead class="thead-dark">
-                            <th>Nombre</th>
-                            <th>Tipo</th>
-                            <th>Acciones</th>
-                        </thead>
-                        <tbody class="thead-light">
-                           @forelse ($usuarios as $usuario)
-                                <tr id="{{$usuario->id}}">
-                                    <td>{{$usuario->nombre}} {{$usuario->apellido_paterno}} {{$usuario->apellido_paterno}}</td>
-                                    <td class="tipo" data-original="{{$usuario->rol}}">{{$usuario->rol}}</td>
-                                    <td>
-                                        <a href="/Usuarios/{{$usuario->id}}/edit" class="btn btn-success">Editar</a>
-                                        <a href="/Usuarios/{{$usuario->id}}" class="btn btn-warning">Mostrar</a>
-                                        <form action="/Usuarios/{{$usuario->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                                        </form>    
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="3">Sin usuarios registrados</td>
-                                </tr>
-                            @endforelse
-                        </tbody> 
-                    </table>
+            <table  class="table table-striped">
+                <thead class="thead-dark">
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                </thead>
+                <tbody class="thead-light">
+                    @forelse ($usuarios as $usuario)
+                        <tr id="{{$usuario->id}}">
+                            <td>{{$usuario->nombre}} {{$usuario->apellido_paterno}} {{$usuario->apellido_paterno}}</td>
+                            
+                            <td  data-original="{{$usuario->apellido}}">{{$usuario->apellido}}</td>
+                            <td  data-original="{{$usuario->rol}}">{{$usuario->rol}}</td>
+                        
+                            <td>
+                                <a href="/Usuarios/{{$usuario->id}}/edit" class="btn btn-success">Editar</a>
+                                <a href="/Usuarios/{{$usuario->id}}" class="btn btn-warning">Mostrar</a>
+                                <form action="/Usuarios/{{$usuario->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>    
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3">Sin usuarios registrados</td>
+                        </tr>
+                    @endforelse
+                </tbody> 
+            </table>
                 {{ $usuarios->links() }}
                 </div>
             </div>
         </div>
     </div>
-  </div>
+</div>
 @endsection

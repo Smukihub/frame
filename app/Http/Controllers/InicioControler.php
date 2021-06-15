@@ -10,11 +10,18 @@ use App\Models\User;
 use App\Models\Proyecto;
 use App\Models\Horario;
 
+
 class InicioControler extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('inicio');
+    }
     public function inicio(){
-        return view('welcome' );
+        $usuarios = User::all();
+        $proyectos = Proyecto::all();
+        $horarios = Horario::all();
+        return view('tablero',compact('usuarios','proyectos','horarios') );
     }
     public function tablero(){
         $user = Auth::user();
@@ -30,12 +37,12 @@ class InicioControler extends Controller
             case 'Prestador':
                 $usuarios = User::all();
                 $proyectos = Proyecto::where('prestador_id',$user->id)->get();
-                return  view('tablero',compact('usuarios','proyectos'));
+                return redirect('/Proyectos')->with('usuarios','proyectos');
                 break;
             case 'Auxiliar':
                 $usuarios = User::all();
                 $proyectos = Proyecto::where('responsable_id',$user->id)->get();
-                return  view('tablero',compact('usuarios','proyectos'));
+                return redirect('/Proyectos')->with('usuarios','proyectos');
                 break;
             case 'Externo':
                 $usuarios = User::all();

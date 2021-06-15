@@ -12,37 +12,24 @@
 
 @section('content')
 
-@switch(Auth::user()->rol)
-    @case('Jefe')
+@can('jefe-only', Auth::user())
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
+        <li class="breadcrumb-item"><a href="/">Tablero</a></li>
         <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}} - Seguimiento</li>
       </ol>
     </nav>
-        @break
-    @case('Auxiliar')
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}} - Seguimiento</li>
-      </ol>
-    </nav>
-        
-        @break
-    @default
-        
-@endswitch
+@endcan
+    
 <body>
   <div class="card mb-4 shadow-sm">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">
           Asistencia
+          <a class="btn btn-primary" href="/Proyectos" role="button">Volver</a>
         </h4>
-      </div>
+      </div>     
       <div class="card-body">
         <div class="container">
           <div class="row">
@@ -55,7 +42,7 @@
                 </div>
                 <div class="form-group col-md-8">
                   <label for="proyecto_id">Proyecto:</label>
-                  <input type="text"  id="proyecto_id" name="proyecto_id" class="form-control" value="{{$proyecto->nombre}}" disabled> </input>
+                  <input type="text"  id="proyecto_id" name="proyecto_id" class="form-control" value="{{$proyecto->nombre}}" disabled> 
                 </div>
 
                 <div class="form-group col-md-8">

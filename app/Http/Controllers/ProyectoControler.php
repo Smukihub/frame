@@ -7,15 +7,31 @@ use Illuminate\Http\Request;
 use App\Models\Proyecto;
 use App\Models\Historico;
 use App\Models\User;
+use Session;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class ProyectoControler extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $proyectos = Proyecto::orderBy('id','desc')->paginate(2);
+        $this->middleware('rol');
+    }
+    public function index(Request $request)
+    {
+        
+
+
+        //puede venir por request
+        $pagina="";
+        $pagina =$request->input('pag_proyectos', Session::get('pag_proyectos',1));
+//        dd($pagina);
+        Session::put('pag_proyectos',$pagina);
+        
+
+
+        $proyectos = Proyecto::orderBy('id','desc')->paginate(2,['*'],'pag_proyectos',$pagina);
         return view('Proyectos.index',compact('proyectos'));
     }
 
@@ -74,14 +90,14 @@ class ProyectoControler extends Controller
         
         $proyecto = Proyecto::find($id);
         $this->authorize('view', $proyecto);
-        /* se debe de actualizar el cuantas */
+        /* se debe de actualizar el juntas */
         $registros = Historico::where('proyecto_id', $proyecto->id)->where('tipo','<>','Falta')->get();
         
         $acumular = 0;
         foreach ($registros as $registro) {
             //dd($registro);
             //if( $registro->tipo == "Asistencia" ){
-                $acumular+=$registro->cuantas;
+                $acumular+=$registro->juntas;
             //}
             
         }
@@ -97,10 +113,7 @@ class ProyectoControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('rol');
-    }
+   
     public function edit($id)
     {
         $proyecto = Proyecto::find($id);
@@ -119,7 +132,7 @@ class ProyectoControler extends Controller
     {
         $valores = $request->all();
 
-       
+    
         $registro = Proyecto::find($id);
         $registro->fill($valores);
         $registro->save();

@@ -3,35 +3,24 @@
 
 
 @section('content') 
-@switch(Auth::user()->rol)
-    @case('Jefe')
+@can('jefe-only', Auth::user())
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
+        <li class="breadcrumb-item"><a href="/">Tablero</a></li>
         <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}} - Horario</li>
       </ol>
     </nav>
-        @break
-    @case('Auxiliar')
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}} - Horario</li>
-      </ol>
-    </nav>
-        
-        @break
-    @default
-        
-@endswitch
+@endcan
   <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Proyecto - Horario') }}
+                <div class="card-header">
+                  <h4 class="my-0 font-weight-normal">
+                  Proyecto - Horario
+                  <a class="btn btn-primary" href="/Proyectos" role="button">Volver</a>
+                  </h4>
                   
                 </div>                  
                 <div class="card-body">

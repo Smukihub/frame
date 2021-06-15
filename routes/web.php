@@ -14,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','InicioControler@inicio');
+
 Route::get('version',function()
 {
     phpinfo();
 });
-Route::get('tablero','InicioControler@tablero');
+Route::get('/tablero','InicioControler@tablero');
 
 Auth::routes();
 

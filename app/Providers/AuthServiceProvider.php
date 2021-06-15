@@ -33,6 +33,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('jefe-only', function ($user) {
+            return $user->rol == "Jefe";
+        });
+        Gate::define('auxiliar-jefe', function ($user) {
+            return $user->rol == "Jefe" || $user->rol == "Auxiliar";
+        });
+    
     }
 }

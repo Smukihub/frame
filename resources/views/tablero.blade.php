@@ -4,6 +4,7 @@
 <script src="/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.js"></script>
 
 <script src="/bootstrap-4.5.3-dist/js/jquery-3.5.1.min.js"></script>
 <script src="/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
@@ -11,87 +12,14 @@
 @section('content')
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/">Inicio</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Tablero</li>
+    <li class="breadcrumb-item active" aria-current="page">Tablero</li>
       
     </ol>
   </nav>
   @switch(Auth::user()->rol)
 
       @case('Aspirante')
-        
-        <div class="container">
-          <div class="card">
-            <div class="card-header">
-              <h3>
-                Espera a que te den de alta
-              </h3>
-            </div>
-            <div class="card-body">
-              <div class="form-group row">
-                <label  class="col-sm-2 col-form-label">Subir uCarta</label>
-                <div class="col-sm-10">
-                  <input type="file" readonly class="form-control-plaintext" id="archivoInput" onchange="return validarExt()">
-                </div>
-              </div>
-              <div id="visorArchivo">
-
-              </div>
-              <button id="guardar"
-              class ="btn btn-info"
-              >aceptar
-            </button>
-            </div>
-          </div>
-
-        </div>
-        <script>
-          var guardar = document.getElementById("guardar")
-          guardar.addEventListener("click",function(){
-            let obj = { 
-              _token: '{{ csrf_token() }}',
-              carta : carta:carta.value,
-              };
-              fetch('/tablero', {
-              method: 'POST',
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(obj)
-              })        
-              .then(response => response.json())
-              .then(res=> {
-              carta= res.registro.carta;
-            });   
-          });
       
-          function validarExt()
-          {
-              var archivoInput = document.getElementById('archivoInput');
-              var archivoRuta = archivoInput.value;
-              var extPermitidas = /(.pdf)$/i;
-              if(!extPermitidas.exec(archivoRuta)){
-                  alert('Asegurese de haber seleccionado un PDF');
-                  archivoInput.value = '';
-                  return false;
-              }
-
-              else
-              {
-                  //PRevio del PDF
-                  if (archivoInput.files && archivoInput.files[0]) 
-                  {
-                      var visor = new FileReader();
-                      visor.onload = function(e) 
-                      {
-                          document.getElementById('visorArchivo').innerHTML = 
-                          '<embed src="'+e.target.result+'" width="500" height="375" />';
-                      };
-                      visor.readAsDataURL(archivoInput.files[0]);
-                  }
-              }
-          }
-        </script>
       @break
       @case( 'Jefe' )
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">  
@@ -302,6 +230,7 @@
                 </div>   
                 <div class="card-body">
                   {{$proyecto->cuentas}} de {{$proyecto->total}}
+                  <canvas id="myChart" width="300" height="300"></canvas>
                 </div>
               </div>
                 
@@ -315,56 +244,34 @@
             if (actual!="") actual +=", ";
             document.getElementById("tbl-horario").rows[{{$horario->hora}}].children[{{$horario->dia}}].innerText= actual + '{{substr($horario->proyecto->prestador->nombre,0,1)}}' + '{{substr($horario->proyecto->prestador->apellido,0,1)}}';  
           @endforeach
+          @foreach ($proyectos as $proyecto)
+          var ctx = document.getElementById("myChart").getContext("2d");
+          var myChart = new Chart(ctx,{
+            type:'doughnut',
+            data: {
+              labels: [
+                'Horas completadas',
+                'Horas total'
+                ],
+              datasets: [{
+                label: 'Avance',
+                data: [{{$proyecto->cuentas}}, {{$proyecto->total}}],
+                backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)'
+                  
+                ],
+                hoverOffset: 4
+              }]
+                    }
+          })
+          @endforeach  
+        
+
         </script>
       @break
-      @case('Auxiliar')
-      @case('Prestador')
-        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">  
-          <h1>
-            Tablero - Auxiliar
-          </h1>
-        </div>
-        <div class="container">
-          <div class="row justify-content-center">
-              <div class="col-md-12">
-                  <div class="card-body">                                           
-                      <table  class="table table-striped">
-                          <thead class="thead-dark">
-                              <th scope="col">Nombre</th>
-                              <th scope="col">Descripción</th>
-                              <th scope="col">Accion</th>
-                              
-                          </thead>
-                          <tbody class="thead-light">
-                              @forelse ($proyectos as $proyectos)
-                                  <tr> @if($proyectos->nombre)
-                                  
-                                  @endif
-                                  
-                                      <td>{{ $proyectos->nombre }}</td>
-                                      <td>{{ $proyectos->d_actividades }}</td>
-                                      <td>                                       
-                                          <a href="/Proyectos/{{$proyectos->id}}" class="btn btn-warning">Mostrar</a>
-                                          <a href="/ver-horario/{{$proyectos->id}}" class="btn btn-primary">Horario</a> 
-                                          <a href="/seguimientos/{{$proyectos->id}}"  class="btn btn-info">Historico</a> 
-                                          <a href="/nuevo-seguimiento/{{$proyectos->id}}"  class="btn btn-dark">Seguimiento</a> 
-                                      </td>
-                                  </tr>
-                              @empty
-                                  <tr>
-                                      <td colspan="3">Sin proyectos registrados</td>
-                                  </tr>
-                              @endforelse
-                          </tbody> 
-                      </table>                          
-                  </div>
-                  
-      
-              </div>
-          </div>
-        </div>
-
-      @break
+    
+  
       @case('Externo')
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">  
           <h1>

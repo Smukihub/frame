@@ -21,7 +21,7 @@ class CreateHistoricosTable extends Migration
             $table->integer('hora');
             $table->enum('tipo', ['Asistencia', 'Retardo','Falta']);
             $table->time('horares')->nullable();
-
+            $table->integer('juntas')->default(0);
             $table->string('actv')->nullable();
             $table->string('justi')->nullable();
             $table->foreignId('proyecto_id')->references('id')->on('proyectos');

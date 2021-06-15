@@ -23,7 +23,7 @@ class CreateProyectosTable extends Migration
             $table->foreignId('responsable_id')
             ->references('id')
             ->on('users');
-           // $table->foreignId('carta_id')
+            //$table->foreignId('carta_id')
             //->references('id')
             //->on('users')->nullable();
             $table->integer('total')->nullable();

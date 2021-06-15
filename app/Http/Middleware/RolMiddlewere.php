@@ -20,10 +20,12 @@ class RolMiddlewere
             return $next($request);
             if (Auth::user()->rol=='Auxiliar')
                 return $next($request);
-                else
-                {
-                    return redirect('/');
-                }
+                    if (Auth::user()->rol=='Prestador')
+                    return $next($request);
+                    else
+                    {
+                        return redirect('/');
+                    }
             
     }
 }

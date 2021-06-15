@@ -19,4 +19,24 @@ class User extends Authenticatable
     public function proyectos(){
         return $this->hasMany('App\Models\Proyecto');
     }
+
+    public function scopeNombre($query, $nombre)
+    {
+        if($nombre)
+        {
+            return $query->where('nombre','like',"%nombre%");
+
+        }
+
+    }
+    public function scopeApellido($query, $apellido)
+    {
+        if($apellido)
+        {
+            return $query->where('apellido','like',"%apellido%");
+
+        }
+
+    }
+    
 }
