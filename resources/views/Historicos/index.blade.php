@@ -45,7 +45,13 @@
                     <th scope="col">Dia <a href="/seguimientos/{{$proyecto->id}}?oAD=si"><i class="fas fa-angle-up"></i></a> <a href="/seguimientos/{{$proyecto->id}}?oDD=si"><i class="fas fa-angle-down"></i></a> F</th>
                     <th scope="col">Hora <a href="/seguimientos/{{$proyecto->id}}?oAH=si"><i class="fas fa-angle-up"></i></a> <a href="/seguimientos/{{$proyecto->id}}?oDH=si"><i class="fas fa-angle-down"></i></a> F</th>
                     <th scope="col">Tipo <a href="/seguimientos/{{$proyecto->id}}?oAT=si"><i class="fas fa-angle-up"></i></a> <a href="/seguimientos/{{$proyecto->id}}?oDT=si"><i class="fas fa-angle-down"></i></a> F</th>
-                    <th scope="col">Detalles</th>
+                    <th scope="col">Detalles<br>
+                      <form action="/seguimientos/{{$proyecto->id}}" method="get">
+                        @csrf
+                        <input type="text" name="detalles" >
+                      </form>
+                      
+                    </th>
                     </tr>
                   </thead>
                   <tbody>

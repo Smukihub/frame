@@ -30,6 +30,14 @@ class seguimientosController extends Controller
                 break;
             }
         }
+        //dd($request->detalles);
+        if(isset( $request->detalles )  ){
+            
+            $detalles=$request->detalles;
+            $ordenado='fD';
+        }
+            
+
         //dd($ordenado);
         switch ($ordenado) {
             case 'oAF':
@@ -53,10 +61,13 @@ class seguimientosController extends Controller
             case 'oAT':
                 $historico = Historico::where('proyecto_id',$id)->orderBy('tipo','asc')->get();
                 break;            
+
             case 'oDT':
                 $historico = Historico::where('proyecto_id',$id)->orderBy('tipo','desc')->get();
                 break;            
-
+            case 'fD':
+                $historico = Historico::where('proyecto_id',$id)->where('actv','like',"%$detalles%")->orWhere('justi','like',"%$detalles%")->get();
+                break;     
             default:
                 $historico = Historico::where('proyecto_id',$id)->get();
                 break;
