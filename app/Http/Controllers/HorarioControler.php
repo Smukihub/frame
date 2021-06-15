@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class HorarioControler extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * No deberia de usarse
      *
      * @return \Illuminate\Http\Response
      */

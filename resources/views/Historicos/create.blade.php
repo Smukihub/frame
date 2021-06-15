@@ -15,7 +15,7 @@
 @can('jefe-only', Auth::user())
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Tablero</a></li>
+        <li class="breadcrumb-item"><a href="/tablero">Tablero</a></li>
         <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}} - Seguimiento</li>
       </ol>
@@ -234,7 +234,9 @@
         "<div class='form-group col-md-12 ' >"+
           "<label for='exampleFormControlTextarea1'>Descripción de actividades:</label>"+
           "<textarea class='form-control' id='actv' name='actv' rows='3' required></textarea>"+
-          "<br>" +  
+          "<br>" +
+          "Cuantas horas llego: <input type='number' name='cuantas' class='form-control'>" +               
+          "<br>" +
           "<input class='btn btn-primary'  id ='guardar' type='submit' value='Guardar'>" +             
         "</div>"
       },false);

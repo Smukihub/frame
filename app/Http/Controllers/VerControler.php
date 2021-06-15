@@ -9,6 +9,15 @@ use App\Models\Horario;
 
 class VerControler extends Controller
 {
+
+    /**
+     * Se utiliza para ....
+     *
+     * regresa una vista
+     * @return vista
+     */
+
+
     public function ver($proyecto_id){
       
         

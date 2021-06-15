@@ -30,9 +30,10 @@ class InicioControler extends Controller
         switch ($user->rol) {
             case 'Jefe':
                 $usuarios = User::all();
-                $proyectos = Proyecto::all();
+                $proyectos = Proyecto::where('activo',1)->get();
+                $historicos= Proyecto::where('activo',0)->get();
                 $horarios = Horario::all();
-                return  view('tablero',compact('usuarios','proyectos','horarios'));
+                return  view('tablero',compact('usuarios','proyectos','horarios','historicos'));
                 break;
             case 'Prestador':
                 $usuarios = User::all();

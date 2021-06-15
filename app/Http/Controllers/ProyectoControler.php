@@ -21,18 +21,29 @@ class ProyectoControler extends Controller
     public function index(Request $request)
     {
         
-
-
         //puede venir por request
         $pagina="";
         $pagina =$request->input('pag_proyectos', Session::get('pag_proyectos',1));
 //        dd($pagina);
         Session::put('pag_proyectos',$pagina);
-        
-
-
-        $proyectos = Proyecto::orderBy('id','desc')->paginate(2,['*'],'pag_proyectos',$pagina);
-        return view('Proyectos.index',compact('proyectos'));
+        $pagina_h="";
+        $pagina_h =$request->input('pag_proyectos_hist', Session::get('pag_proyectos_hist',1));
+//        dd($pagina);
+        Session::put('pag_proyectos_hist',$pagina_h);
+/*
+        switch ($variable) {
+            case 'value':
+                # code...
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+*/
+        $proyectos = Proyecto::orderBy('id','desc')->where('activo',1)->paginate(1,['*'],'pag_proyectos',$pagina);
+        $historicos = Proyecto::orderBy('id','desc')->where('activo',0)->paginate(1,['*'],'pag_proyectos_hist',$pagina_h);
+        return view('Proyectos.index',compact('proyectos','historicos'));
     }
 
     /**

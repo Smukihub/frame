@@ -195,6 +195,7 @@
                 </h4>
               </div>
               <div class="card-body">
+                <h3>Activos</h3>
                 <table class="table table-hover"  text-center="">
                   
                   <tbody>
@@ -214,6 +215,28 @@
                   
                   </tbody>
                 </table>
+
+                <h3>Antiguos</h3>
+                <table class="table table-hover"  text-center="">
+                  
+                  <tbody>
+                  
+                    @forelse ($historicos as $proyecto)
+                    <tr class="table table-sm table-bordered" >
+                    
+                      <td scope="row">{{$proyecto->nombre}}</th>
+                      
+                    </tr>
+                  
+                    @empty
+                    <tr>
+                        <td colspan="3">Sin proyectos registrados</td>
+                    </tr>
+                    @endforelse
+                  
+                  </tbody>
+                </table>
+
               </div>
             </div>
           </div>
@@ -230,7 +253,7 @@
                 </div>   
                 <div class="card-body">
                   {{$proyecto->cuentas}} de {{$proyecto->total}}
-                  <canvas id="myChart" width="300" height="300"></canvas>
+                  <canvas id="myChart{{$loop->iteration}}" width="300" height="300"></canvas>
                 </div>
               </div>
                 
@@ -244,8 +267,10 @@
             if (actual!="") actual +=", ";
             document.getElementById("tbl-horario").rows[{{$horario->hora}}].children[{{$horario->dia}}].innerText= actual + '{{substr($horario->proyecto->prestador->nombre,0,1)}}' + '{{substr($horario->proyecto->prestador->apellido,0,1)}}';  
           @endforeach
+
+
           @foreach ($proyectos as $proyecto)
-          var ctx = document.getElementById("myChart").getContext("2d");
+          var ctx = document.getElementById("myChart{{$loop->iteration}}").getContext("2d");
           var myChart = new Chart(ctx,{
             type:'doughnut',
             data: {
