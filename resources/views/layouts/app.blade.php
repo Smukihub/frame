@@ -71,7 +71,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->nombre }}
+                                    {{ Auth::user()->nombre }}({{ Auth::user()->rol }})
                                     @if(Auth::user()->path)
                                     <img width="50px" height="50px" src="{{ asset('images/'.Auth::user()->path) }}">
                                     @endif

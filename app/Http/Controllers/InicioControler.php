@@ -18,12 +18,6 @@ class InicioControler extends Controller
         $this->middleware('inicio');
     }
     public function inicio(){
-        $usuarios = User::all();
-        $proyectos = Proyecto::all();
-        $horarios = Horario::all();
-        return view('tablero',compact('usuarios','proyectos','horarios') );
-    }
-    public function tablero(){
         $user = Auth::user();
         if (is_null($user)) die;
 
@@ -36,9 +30,10 @@ class InicioControler extends Controller
                 return  view('tablero',compact('usuarios','proyectos','horarios','historicos'));
                 break;
             case 'Prestador':
-                $usuarios = User::all();
+                
+                
                 $proyectos = Proyecto::where('prestador_id',$user->id)->get();
-                return redirect('/Proyectos')->with('usuarios','proyectos');
+                return  view('tablero',compact('usuarios','proyectos','horarios','historicos'));
                 break;
             case 'Auxiliar':
                 $usuarios = User::all();

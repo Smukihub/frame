@@ -18,9 +18,9 @@ class RolMiddlewere
     {
         if (Auth::check() && Auth::user()->rol=='Jefe' ) 
             return $next($request);
-            if (Auth::user()->rol=='Auxiliar')
+            if (Auth::check() && Auth::user()->rol=='Auxiliar')
                 return $next($request);
-                    if (Auth::user()->rol=='Prestador')
+                    if (Auth::check() && Auth::user()->rol=='Prestador')
                     return $next($request);
                     else
                     {

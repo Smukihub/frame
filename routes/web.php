@@ -19,7 +19,7 @@ Route::get('version',function()
 {
     phpinfo();
 });
-Route::get('/tablero','InicioControler@tablero');
+//Route::get('/tablero','InicioControler@tablero');
 
 Auth::routes();
 

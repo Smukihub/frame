@@ -12,29 +12,95 @@ class ProyectoSeeder extends Seeder
     public function run()
     {
         DB::table('proyectos')->insert([
-            'nombre' => "Estancias",
+            'nombre' => "Proyecto1",
             'd_actividades' => "Proyecto web" ,
-            'prestador_id' => "4" ,
+            'activo' => 1 ,
+            'prestador_id' => "6" ,
             'responsable_id' => "2" ,
+            'total' => 8,
+            //'cuentas' => 450,
             //'carta_id' => "" ,
-            'iniciales' =>"SFL",
+           // 'iniciales' =>"SFL",
+        
         ]);
         DB::table('proyectos')->insert([
-            'nombre' => "Titulacion",
-            'd_actividades' => "Proyecto Web" ,
-            'prestador_id' => "4" ,
-            'responsable_id' => "6" ,
+            'nombre' => "Proyecto2",
+            'd_actividades' => "Proyecto web" ,
+            'activo' => 1 ,
+            'prestador_id' => "7" ,
+            'responsable_id' => "2" ,
+            'total' => 9,
+            //'cuentas' => 300,
             //'carta_id' => "" ,
-            'iniciales' =>"SFL",
+            //'iniciales' =>"SFL",
+        ]);
+        DB::table('proyectos')->insert([
+            'nombre' => "Proyecto3",
+            'd_actividades' => "Proyecto web" ,
+            'activo' => 1 ,
+            'prestador_id' => "8" ,
+            'responsable_id' => "3" ,
+            'total' => 5,
+            
+            //'cuentas' => 120,
+            //'carta_id' => "" ,
+            //'iniciales' =>"SFL",
+        ]);
+        DB::table('proyectos')->insert([
+            'nombre' => "Proyecto4",
+            'd_actividades' => "Proyecto web" ,
+            'activo' => 1 ,
+            'prestador_id' => "9" ,
+            'responsable_id' => "3" ,
+            'total' => 5,
+            //'cuentas' => 100,
+            //'carta_id' => "" ,
+            //'iniciales' =>"SFL",
+        ]);
+        DB::table('proyectos')->insert([
+            'nombre' => "Proyecto5",
+            'd_actividades' => "Proyecto web" ,
+            'activo' => 1 ,
+            'prestador_id' => "10" ,
+            'responsable_id' => "4" ,
+            'total' => 7,
+            //'cuentas' => 350,
+            //'carta_id' => "" ,
+            //'iniciales' =>"SFL",
+        ]);
+        DB::table('proyectos')->insert([
+            'nombre' => "Proyecto6",
+            'd_actividades' => "Proyecto web" ,
+            'activo' => 1 ,
+            'prestador_id' => "11" ,
+            'responsable_id' => "4" ,
+            'total' => 5,
+            //'cuentas' => 100,
+            //'carta_id' => "" ,
+            //'iniciales' =>"SFL",
+        ]);
+        DB::table('proyectos')->insert([
+            'nombre' => "Proyecto7",
+            'd_actividades' => "Proyecto Web" ,
+            'activo' => 0 ,
+            'prestador_id' => "12" ,
+            'responsable_id' => "5" ,
+            'total' => 5,
+            //'cuentas' => 100,
+            //'carta_id' => "" ,
+            //'iniciales' =>"SFL",
             
         ]);
         DB::table('proyectos')->insert([
-            'nombre' => "Doctorado",
+            'nombre' => "Proyecto8",
             'd_actividades' => "Proyecto web" ,
-            'prestador_id' => "4" ,
-            'responsable_id' => "2" ,
+            'activo' => 0 ,
+            'prestador_id' => "13" ,
+            'responsable_id' => "5" ,
+            'total' => 5,
+            //'cuentas' => 100,
             //'carta_id' => "" ,
-            'iniciales' =>"SFL",
+            //'iniciales' =>"SFL",
         ]);
     }
 }

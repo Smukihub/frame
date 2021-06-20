@@ -68,9 +68,9 @@
 
                 <div class="form-group col-md-12">
                   <label style="display: block">Seleccionar tipo:</label>
-                    <input type="button" id="asistenciaid" class="btn btn-primary" value="Asistencia"></input>
-                    <input type="button" id="retardoid"  class="btn btn-warning" value="Retardo"></input>
-                    <input type="button" id="faltaid"  class="btn btn-danger" value="Falta"></input>
+                    <input type="button" id="asistenciaid" class="btn btn-primary" value="Asistencia">
+                    <input type="button" id="retardoid"  class="btn btn-warning" value="Retardo">
+                    <input type="button" id="faltaid"  class="btn btn-danger" value="Falta">
                     <input type="hidden" id="tipo" name="tipo">
                 </div>
 
@@ -235,7 +235,7 @@
           "<label for='exampleFormControlTextarea1'>Descripción de actividades:</label>"+
           "<textarea class='form-control' id='actv' name='actv' rows='3' required></textarea>"+
           "<br>" +
-          "Cuantas horas llego: <input type='number' name='cuantas' class='form-control'>" +               
+          "Cuantas horas llego: <input type='number' name='juntas' class='form-control'>" +               
           "<br>" +
           "<input class='btn btn-primary'  id ='guardar' type='submit' value='Guardar'>" +             
         "</div>"

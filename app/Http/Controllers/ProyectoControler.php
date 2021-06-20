@@ -124,7 +124,7 @@ class ProyectoControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
+
     public function edit($id)
     {
         $proyecto = Proyecto::find($id);

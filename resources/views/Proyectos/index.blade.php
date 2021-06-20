@@ -74,6 +74,7 @@
 {{$proyectos->links()}}
 
 {{-- histocios --}}
+@can('auxiliar-jefe', Auth::user())
 <table  class="table table-striped">
     <thead class="thead-dark">
         <th scope="col">Nombre <a href="/Proyectos?oAF=si"><i class="fas fa-angle-up"></i></a> <a href="/Proyectos?oDF=si"><i class="fas fa-angle-down"></i></a> F</th>
@@ -127,7 +128,7 @@
         </div>
     </div>
 </div>
-
+@endcan
 
 
 

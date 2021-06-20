@@ -17,6 +17,7 @@ class CreateProyectosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('d_actividades');
+            $table->tinyInteger('activo')->default(1);
             $table->foreignId('prestador_id')
             ->references('id')
             ->on('users');
