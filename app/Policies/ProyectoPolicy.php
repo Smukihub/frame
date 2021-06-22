@@ -39,9 +39,9 @@ class ProyectoPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, Proyecto $proyectos)
     {
-        //
+        return $user->rol == "Jefe"  ;
     }
 
     /**

@@ -51,8 +51,9 @@ class ProyectoControler extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( Proyecto $proyectos)
     {
+        $this->authorize('create', $proyectos);
         $proyectos = Proyecto::all();
         $usuarios = User::all();
         $prestadores = User::where("rol","Aspirante")->get();

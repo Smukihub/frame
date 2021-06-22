@@ -78,7 +78,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @can('jefe-only', Auth::user())
+                                    @can('prestador-jefe', Auth::user())
                                     <a class="dropdown-item" href="/tablero">
                                         {{ __('Tablero') }}
                                     </a>
