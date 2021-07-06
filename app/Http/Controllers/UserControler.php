@@ -12,6 +12,16 @@ class UserControler extends Controller
 {
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | Controlador Proyecto
+    |--------------------------------------------------------------------------
+    | Este controlador maneja el registro de 
+    los usuarios, también cumple con la función de editar, 
+    ver, actuliazar y borrar cada registro.
+    | 
+    |
+    */
     /**
      * Display a listing of the resource.
      *

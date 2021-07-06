@@ -14,6 +14,20 @@ use Illuminate\Support\Facades\Auth;
 
 class ProyectoControler extends Controller
 {
+    
+
+    /*
+    |--------------------------------------------------------------------------
+    | Controlador Proyecto
+    |--------------------------------------------------------------------------
+    | Este controlador maneja el registro de 
+    los proyectos, también cumple con la función de editar, 
+    ver, actuliazar y borrar cada registro.
+    | 
+    |
+    */
+
+    
     public function __construct()
     {
         $this->middleware('rol');
@@ -167,5 +181,10 @@ class ProyectoControler extends Controller
         }catch (\Illuminate\Database\QueryException $e) {
             return redirect("/Proyectos")->with('error',$e->getMessage());
         }
+    }
+
+    public function activo()
+    {
+        
     }
 }

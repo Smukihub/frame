@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Storage;
 
 class HorarioControler extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Controlador Horario
+    |--------------------------------------------------------------------------
+    | Este controlador maneja el registro de nuevos .
+    | 
+    |
+    */
+
     /**
      * No deberia de usarse
      *

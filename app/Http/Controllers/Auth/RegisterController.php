@@ -14,12 +14,12 @@ class RegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Register Controller
+    | Register Controlador
     |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
+    | Este controlador maneja el registro de nuevos usuarios así como su
+    | validación y creación. Por defecto, este controlador usa un rasgo para
+    | proporcionar esta funcionalidad sin necesidad de ningún código adicional.
+    | 
     |
     */
 
