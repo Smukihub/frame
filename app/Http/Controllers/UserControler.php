@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Barryvdh\DomPDF\Facade as PDF;
 
 use App\Models\User;
 
@@ -155,6 +156,13 @@ class UserControler extends Controller
                 $imagen->move($ruta_destino, $nombre_de_archivo);
                 $valores['path']=$nombre_de_archivo;
             }
+            $carta = $request->file('carta');
+            if(!is_null($carta)){
+                $ruta_destino = public_path('/storage/cartas/');
+                $nombre_de_archivo = $carta->getClientOriginalName();
+                $carta->move($ruta_destino, $nombre_de_archivo);
+                $valores['carta']=$nombre_de_archivo;
+            }
     
          $registro = User::find($id);
          $registro->fill($valores);
@@ -177,9 +185,16 @@ class UserControler extends Controller
         try {
             $registro = User::find($id);
             $registro->delete();
-            return redirect("/Usurios")->with('mensaje','Usuario modificado correctamente');
+            return redirect("/Usuarios")->with('mensaje','Usuario modificado correctamente');
         }catch (\Illuminate\Database\QueryException $e) {
-            return redirect("/Uusarios")->with('error',$e->getMessage());
+            return redirect("/Usuarios")->with('error',$e->getMessage());
         }
+    }
+
+    public function exportPdf()
+    {
+        $usuario = User::get();
+        $pdf = PDF::loadView('pdf.user', compact('usuario'));
+        return $pdf->download('user-list.pdf');
     }
 }

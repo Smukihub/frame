@@ -32,23 +32,23 @@
     @method('PUT')
     <div class="form-group">
         <label for="nombre">Nombre:</label>
-        <input id="nombre" type="text" name="nombre" class="form-control" value="{{$usuario->nombre}}">
+        <input id="nombre" type="text" name="nombre" class="form-control" value="{{$usuario->nombre}}" required>
     </div>
 
 
     <div class="form-group">
         <label for="apellido">Apellido:</label>
-        <input id="apellido" type="text" name="apellido" class="form-control" value="{{$usuario->apellido}}">
+        <input id="apellido" type="text" name="apellido" class="form-control" value="{{$usuario->apellido}}" required>
     </div>
     
     <div class="form-group">
         <label for="telefono">Teléfono:</label>
-        <input id="telefono" type="number" name="telefono" class="form-control" value="{{$usuario->telefono}}">
+        <input id="telefono" type="number" name="telefono" class="form-control" value="{{$usuario->telefono}}" required>
     </div>
    
     <div class="form-group">
         <label for="rol">Tipo de usuario:</label>
-        <select name="rol" id="rol">
+        <select name="rol" id="rol" required>
             @if ($usuario->rol =="Jefe")
                 <option selected>Jefe</option>
             @else
@@ -78,20 +78,20 @@
     </div> 
     <div class="form-group">
         <label for="email">E-mail:</label>
-        <input id="email" type="email" name="email" class="form-control" value="{{$usuario->email}}">
+        <input id="email" type="email" name="email" class="form-control" value="{{$usuario->email}}" required>
     </div>
     <div class="form-group">
         <label for="password">Password del usuario:</label>
-        <input id="password" type="password" name="password" class="form-control">
+        <input id="password" type="password" name="password" class="form-control" required>
     </div>
     <div class="form-group">
         <label for="password2">Repita el password:</label>
-        <input id="password2" type="password" name="password2" class="form-control">
+        <input id="password2" type="password" name="password2" class="form-control" required>
     </div> 
     <div class="form-group">
         <label for="path">Imagen del usuario:</label>
         <img src="/images/{{$usuario->path}}" alt="" class="img-thumnail" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
-        <input type="file" name="path" id="path">
+        <input type="file" name="path" id="path" required>
     </div>
     
     <input type="submit" class="btn btn-primary" value="Guardar">   

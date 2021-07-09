@@ -62,13 +62,13 @@
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
-                                        @enderror                                                               
+                                        @enderror
                             </div>                             
                             <div class="col-md-6 mb-4">
-                                <label for="password-confirm" >{{ __('Confirmar Contraseña') }}</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <label for="password2" >{{ __('Confirmar Contraseña') }}</label>
+                                <input id="password2" type="password" class="form-control" name="password2" required autocomplete="password2">
                                 
-                                    @error('password-confirm')
+                                    @error('password2')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

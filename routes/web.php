@@ -28,6 +28,7 @@ Route::resource('Horarios','HorarioControler');
 Route::resource('Proyectos','ProyectoControler');
 //Route::resource('Historicos','HistoricoControler');
 Route::resource('Usuarios','UserControler');
+Route::get('lista-usuarios-pdf','UserControler@exportPdf')->name('users.pdf');
 
 Route::get('seguimientos/{proyectos_id}','seguimientosController@index');
 Route::get('Historicos/{historico}','seguimientosController@show');

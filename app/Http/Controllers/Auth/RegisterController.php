@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -67,6 +68,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
     protected function create(array $data)
     {
         return User::create([
@@ -83,4 +85,40 @@ class RegisterController extends Controller
             
         ]);
     }
+    protected function register (Request $request)
+    {
+        $valores = $request->all();
+        if ($valores['password']!=$valores['password2'])
+            return redirect()->back()->with('error','El password no esta bien confirmado');
+
+        $valores['password']=Hash::make( $valores['password'] );
+
+        $imagen = $request->file('path');
+        if(!is_null($imagen)){
+            $ruta_destino = public_path('/storage/images/');
+            $nombre_de_archivo = $imagen->getClientOriginalName();
+            $imagen->move($ruta_destino, $nombre_de_archivo);
+            $valores['path']=$nombre_de_archivo;
+        }
+        $carta = $request->file('carta');
+        if(!is_null($carta)){
+            $ruta_destino = public_carta('/storage/cartas/');
+            $nombre_de_carta = $carta->getClientOriginalName();
+            $carta->move($ruta_destino, $nombre_de_carta);
+            $valores['carta']=$nombre_de_carta;
+        }
+        
+        $registro = new User();
+        $registro->fill($valores);
+        $registro->save();
+
+        return redirect("/")->with('mensaje','Usuario agregado correctamente');
+
+        
+    }
+
+
+
+
+    
 }
