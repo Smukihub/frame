@@ -93,6 +93,16 @@ class RegisterController extends Controller
 
         $valores['password']=Hash::make( $valores['password'] );
 
+        /*
+        
+        
+        cunado creas un usuario (cuando se registra) la ruta es por POST y envia aqui
+                 App\Http\Controllers\Auth\RegisterController@register
+
+        entiendo que es aqui donde hasheas la clave   
+        duda, se crean bien activo,status y rol ?
+        veo que estas subiendo los archivo (aun cuando no usas el storage) subes como php simple
+        */
         $imagen = $request->file('path');
         if(!is_null($imagen)){
             $ruta_destino = public_path('/storage/images/');
