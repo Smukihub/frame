@@ -65,8 +65,8 @@
                                         @enderror
                             </div>                             
                             <div class="col-md-6 mb-4">
-                                <label for="password2" >{{ __('Confirmar Contraseña') }}</label>
-                                <input id="password2" type="password" class="form-control" name="password2" required autocomplete="password2">
+                                <label for="password-confirm" >{{ __('Confirmar Contraseña') }}</label>
+                                <input id="password-confirm" type="password" class="form-control" name="password-confirm" required autocomplete="password2">
                                 
                                     @error('password2')
                                         <span class="invalid-feedback" role="alert">
@@ -91,7 +91,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-4">
                                 <label for="telefono" >{{ __('Carta') }}</label>
-                                <input type="file" readonly class="form-control-plaintext" id="archivoInput" onchange="return validarExt()" class="form-control @error('carta') is-invalid @enderror " name="carta" required autocomplete="new-telefono">
+                                <input type="file" readonly class="form-control-plaintext" id="archivoInput" onchange="return validarExt()" class="form-control @error('carta') is-invalid @enderror " name="carta"  autocomplete="new-telefono">
                                 <div id="visorArchivo">
                     
                                 </div>    

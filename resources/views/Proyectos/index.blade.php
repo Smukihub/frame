@@ -46,51 +46,51 @@
             </div>                  
             <div class="card-body">                                           
 {{-- ////////proyectos--}}
-<table  class="table table-striped">
-    <thead class="thead-dark">
-        <th scope="col">Nombre <a href="/Proyectos?oAF=si"><i class="fas fa-angle-up"></i></a> <a href="/Proyectos?oDF=si"><i class="fas fa-angle-down"></i></a> F</th>
-        <th scope="col">Descripción</th>
-        <th scope="col">Accion</th>
-        
-    </thead>
-    <tbody class="thead-light">
-        @forelse ($proyectos as $proyecto)
-            <tr> @if($proyecto->nombre)
-            
-            @endif
-            
-                <td>{{ $proyecto->nombre }}</td>
-                <td>{{ $proyecto->d_actividades }}</td>
-                <td>
-                    
-                    <a href="/Proyectos/{{$proyecto->id}}" class="btn btn-warning">Mostrar</a>
-                    <a href="/ver-horario/{{$proyecto->id}}" class="btn btn-secondary">Horario</a> 
-                    <a href="/seguimientos/{{$proyecto->id}}"  class="btn btn-info">Historico</a> 
-
-                    @can('auxiliar-jefe', Auth::user())
-                    <a href="/nuevo-seguimiento/{{$proyecto->id}}"  class="btn btn-dark">Seguimiento</a> 
+                <table  class="table table-striped">
+                    <thead class="thead-dark">
+                        <th scope="col">Nombre <a href="/Proyectos?oAF=si"><i class="fas fa-angle-up"></i></a> <a href="/Proyectos?oDF=si"><i class="fas fa-angle-down"></i></a> F</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Accion</th>
                         
-                    @endcan
-                    
-                    @can('jefe-only', Auth::user())
-                        <a href="/Proyectos/{{$proyecto->id}}/edit" class="btn btn-success">Editar</a>
-                        <form action="/Proyectos/{{$proyecto->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>   
-                        <button class="button button5">Desactivar</button>
-                    @endcan
-                
-                </td>
-            </tr>
-        @empty
-            <tr>
-                <td colspan="3">Sin proyectos registrados</td>
-            </tr>
-        @endforelse
-    </tbody> 
-</table>     
+                    </thead>
+                    <tbody class="thead-light">
+                        @forelse ($proyectos as $proyecto)
+                            <tr> @if($proyecto->nombre)
+                            
+                            @endif
+                            
+                                <td>{{ $proyecto->nombre }}</td>
+                                <td>{{ $proyecto->d_actividades }}</td>
+                                <td>
+                                    
+                                    <a href="/Proyectos/{{$proyecto->id}}" class="btn btn-warning">Mostrar</a>
+                                    <a href="/ver-horario/{{$proyecto->id}}" class="btn btn-secondary">Horario</a> 
+                                    <a href="/seguimientos/{{$proyecto->id}}"  class="btn btn-info">Historico</a> 
+
+                                    @can('auxiliar-jefe', Auth::user())
+                                    <a href="/nuevo-seguimiento/{{$proyecto->id}}"  class="btn btn-dark">Seguimiento</a> 
+                                        
+                                    @endcan
+                                    
+                                    @can('jefe-only', Auth::user())
+                                        <a href="/Proyectos/{{$proyecto->id}}/edit" class="btn btn-success">Editar</a>
+                                        <form action="/Proyectos/{{$proyecto->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>   
+                                        <button class="button button5">Desactivar</button>
+                                    @endcan
+                                
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3">Sin proyectos registrados</td>
+                            </tr>
+                        @endforelse
+                    </tbody> 
+                </table>     
 {{$proyectos->links()}}
 
 {{-- histocios --}}
