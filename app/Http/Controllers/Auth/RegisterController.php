@@ -85,6 +85,47 @@ class RegisterController extends Controller
             
         ]);
     }
+    protected function register (Request $request)
+    {
+        $valores = $request->all();
+        if ($valores['password']!=$valores['password2'])
+            return redirect()->back()->with('error','El password no esta bien confirmado');
+
+        $valores['password']=Hash::make( $valores['password'] );
+
+        /*
+        
+        
+        cunado creas un usuario (cuando se registra) la ruta es por POST y envia aqui
+        App\Http\Controllers\Auth\RegisterController@register
+
+        entiendo que es aqui donde hasheas la clave   
+        duda, se crean bien activo,status y rol ?
+        veo que estas subiendo los archivo (aun cuando no usas el storage) subes como php simple
+        */
+        $imagen = $request->file('path');
+        if(!is_null($imagen)){
+            $ruta_destino = public_path('/storage/images/');
+            $nombre_de_archivo = $imagen->getClientOriginalName();
+            $imagen->move($ruta_destino, $nombre_de_archivo);
+            $valores['path']=$nombre_de_archivo;
+        }
+        $carta = $request->file('carta');
+        if(!is_null($carta)){
+            $ruta_destino = public_carta('/storage/cartas/');
+            $nombre_de_carta = $carta->getClientOriginalName();
+            $carta->move($ruta_destino, $nombre_de_carta);
+            $valores['carta']=$nombre_de_carta;
+        }
+        
+        $registro = new User();
+        $registro->fill($valores);
+        $registro->save();
+
+        return redirect("/")->with('mensaje','Usuario agregado correctamente');
+
+        
+    }
 
 
 
