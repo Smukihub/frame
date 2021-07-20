@@ -194,7 +194,13 @@ class UserControler extends Controller
     public function exportPdf()
     {
         $usuario = User::get();
-        $pdf = PDF::loadView('pdf.user', compact('usuario'));
+        $pdf = PDF::loadView('pdf.users', compact('usuario'));
         return $pdf->download('user-list.pdf');
+    }
+    public function exportOnePdf()
+    {
+        $usuario = User::get();
+        $pdf = PDF::loadView('pdf.user', compact('usuario'));
+        return $pdf->download('usuario-pdf/{Usuario}');
     }
 }

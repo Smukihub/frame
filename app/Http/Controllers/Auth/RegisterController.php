@@ -101,6 +101,10 @@ class RegisterController extends Controller
 
         entiendo que es aqui donde hasheas la clave   
         duda, se crean bien activo,status y rol ?
+
+        R = Si, porque tienen valor por default en las migraciones.
+
+        
         veo que estas subiendo los archivo (aun cuando no usas el storage) subes como php simple
         */
         $imagen = $request->file('path');

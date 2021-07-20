@@ -10,7 +10,17 @@
 <title>Lista de Usuarios</title>
 </head>
 <body>
-   
+    <header>
+        <div class="row">
+            <div class="col">
+                <img  class="rounded float-left" width="100px" height="100px" src="{{ asset('images/logo.png') }}">
+            </div>
+            
+            <div class="col">
+                <img  class="rounded float-right"  width="100px" height="100px" src="{{ asset('images/logo_isc.jpg') }}">
+            </div>
+          </div>
+    </header>
  
 
     <div class="row justify-content-center">
@@ -26,22 +36,23 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Tipo</th>
-                       
-                        
-                    
                         
                   
                       </tr>
                     </thead>
                     <tbody>
-                        
-                      <tr >
-                        <td>{{$usuario->nombre}} {{$usuario->apellido_paterno}} {{$usuario->apellido_paterno}}</td>                
-                        <td  data-original="{{$usuario->apellido}}">{{$usuario->apellido}}</td>
-                        <td  data-original="{{$usuario->rol}}">{{$usuario->rol}}</td>
-                       
-                    </tr>
-                 
+                        @forelse ($usuario as $usuario)
+                        <tr id="{{$usuario->id}}">
+                            <td>{{$usuario->nombre}} {{$usuario->apellido_paterno}} {{$usuario->apellido_paterno}}</td>                
+                            <td  data-original="{{$usuario->apellido}}">{{$usuario->apellido}}</td>
+                            <td  data-original="{{$usuario->rol}}">{{$usuario->rol}}</td>
+                           
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3">Sin usuarios registrados</td>
+                        </tr>
+                    @endforelse
                 </tbody> 
                         
                       </tr>

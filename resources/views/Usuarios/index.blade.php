@@ -46,6 +46,7 @@
                         
                             <td>
                                 <a href="/Usuarios/{{$usuario->id}}/edit" class="btn btn-success">Editar</a>
+                                <a href="usuario-pdf/{Usuario}" class="btn btn-primary">PDF</a>
                                 <form action="/Usuarios/{{$usuario->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
                                     @csrf
                                     @method('DELETE')
