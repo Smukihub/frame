@@ -191,15 +191,29 @@ class UserControler extends Controller
         }
     }
 
+
+    
+    /**
+     * Esta funcion es para poder exportar en pdf todos los datos de la tabla .
+ 
+     */
     public function exportPdf()
     {
         $usuario = User::get();
         $pdf = PDF::loadView('pdf.users', compact('usuario'));
         return $pdf->download('user-list.pdf');
     }
-    public function exportOnePdf()
+
+        /**
+     * Esta funcion es para poder exportar en pdf un solo registro de la tabla de la base de datos 
+     * 
+     * Me salió el error de Trying to get property 'nombre' of non-object
+     * Mi duda es si es la forma en la que declaro el "$usario" o en que.
+ 
+     */
+    public function exportOnePdf($id)
     {
-        $usuario = User::get();
+        $usuario = User::find($id);
         $pdf = PDF::loadView('pdf.user', compact('usuario'));
         return $pdf->download('usuario-pdf/{Usuario}');
     }
