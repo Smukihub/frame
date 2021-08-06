@@ -22,17 +22,16 @@ class UserControler extends Controller
     ver, actuliazar y borrar cada registro.
     | 
     |
-    */
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  */
 
     public function __construct()
     {
         $this->middleware('jefe');
     }
+   
+    /**
+     * Muestra una lista de los Usuarios.
+     */
     public function index(Request $request)
     {
         $nombre = $request->get('buscar');
@@ -47,14 +46,13 @@ class UserControler extends Controller
         
 
 
-        $usuarios = User::orderBy('id','desc')->paginate(2,['*'],'pag_usuarios',$pagina);
+        $usuarios = User::orderBy('id','desc')->paginate(10,['*'],'pag_usuarios',$pagina);
         return view('Usuarios.index',compact('usuarios','buscar'));
     }
 
+
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Muestre el formulario para crear un nuevo Usuario
      */
     public function create()
     {   
@@ -62,10 +60,7 @@ class UserControler extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Guarda un Usuario recién creado en el almacenamiento.
      */
     public function store(Request $request)
     {
@@ -100,10 +95,7 @@ class UserControler extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Mostrar el Usuario especificado.
      */
     public function show($id)
     {
@@ -114,10 +106,7 @@ class UserControler extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Muestra el formulario para editar el Usuario especificado.
      */
     public function edit($id)
     {
@@ -127,11 +116,7 @@ class UserControler extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Actualiza el Usuario especificado en el almacenamiento.
      */
     public function update(Request $request, $id)
     {
@@ -175,10 +160,7 @@ class UserControler extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Elimina especificamente el Usuario deseado.    
      */
     public function destroy($id)
     {
@@ -193,9 +175,8 @@ class UserControler extends Controller
 
 
     
-    /**
-     * Esta funcion es para poder exportar en pdf todos los datos de la tabla .
- 
+    /*
+     * Esta funcion es para poder exportar en pdf todos los Usuarios del almacenamiento.
      */
     public function exportPdf()
     {
@@ -204,17 +185,13 @@ class UserControler extends Controller
         return $pdf->download('user-list.pdf');
     }
 
-        /**
-     * Esta funcion es para poder exportar en pdf un solo registro de la tabla de la base de datos 
-     * 
-     * Me salió el error de Trying to get property 'nombre' of non-object
-     * Mi duda es si es la forma en la que declaro el "$usario" o en que.
- 
+    /*
+     * Esta funcion es para poder exportar en pdf un solo Usuario del almacenamiento.  
      */
     public function exportOnePdf($id)
     {
         $usuario = User::find($id);
         $pdf = PDF::loadView('pdf.user', compact('usuario'));
-        return $pdf->download('usuario-pdf/{Usuario}');
+        return $pdf->download('usuario-pdf.pdf');
     }
 }

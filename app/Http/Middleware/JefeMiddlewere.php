@@ -8,11 +8,10 @@ use Closure;
 class JefeMiddlewere
 {
     /**
-     * Handle an incoming request.
+     * Obtenga la ruta a la que se debe redirigir al usuario cuando no esté autenticado,
+     * verifica si el usuario es especificamente tipo Jefe.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     *
      */
     public function handle($request, Closure $next)
     {

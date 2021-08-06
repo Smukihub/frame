@@ -11,84 +11,23 @@ class ProyectoPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determina si el usuario puede ver el modelo Proyecto.
      *
-     * @param  \App\Models\User  $user
-     * @return mixed
+     * 
      */
-    public function viewAny(User $user)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Proyecto  $proyecto
-     * @return mixed
-     **/
+ 
     public function view(User $user, Proyecto $proyecto)
     {
         return $user->id === $proyecto->responsable_id || $user->id === $proyecto->prestador_id || $user->rol == "Jefe"  ;
     }
 
     /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return mixed
+     *  Determina si el usuario puede crear registros en el modelo Proyecto.
      */
     public function create(User $user, Proyecto $proyectos)
     {
         return $user->rol == "Jefe"  ;
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Proyecto  $proyecto
-     * @return mixed
-     */
-    public function update(User $user, Proyecto $proyecto)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Proyecto  $proyecto
-     * @return mixed
-     */
-    public function delete(User $user, Proyecto $proyecto)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Proyecto  $proyecto
-     * @return mixed
-     */
-    public function restore(User $user, Proyecto $proyecto)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Proyecto  $proyecto
-     * @return mixed
-     */
-    public function forceDelete(User $user, Proyecto $proyecto)
-    {
-        //
-    }
+   
 }

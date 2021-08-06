@@ -11,9 +11,9 @@
 @can('jefe-only', Auth::user())
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Tablero</a></li>
+    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
     <li class="breadcrumb-item"><a href="/Proyectos">Proyectos</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}} - Mostrar</li>
+    <li class="breadcrumb-item active" aria-current="page">{{$proyecto->nombre}}</li>
   </ol>
 </nav>
 @endcan
@@ -22,15 +22,12 @@
       <div class="col-md-8">
           <div class="card">
               <div class="card-header">
-                <h4 class="my-0 font-weight-normal">
-                Proyecto - Mostrar
-                <a class="btn btn-primary" href="/Proyectos" role="button">Volver</a>
-                </h4>
+               Datos - {{$proyecto->nombre}} 
                 
               </div>                  
               <div class="card-body">
-                <table class="table">
-                  <thead>
+                <table class="table table-bordered">
+                  <thead class="thead-dark">
                     <tr>
                       <th scope="col">Nombre</th>
                       <th scope="col">Descripción</th>

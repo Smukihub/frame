@@ -32,6 +32,12 @@ class ProyectoControler extends Controller
     {
         $this->middleware('rol');
     }
+
+
+    
+    /**
+     * Muestra una lista de los Proyectos.
+     */
     public function index(Request $request)
     {
         
@@ -55,15 +61,13 @@ class ProyectoControler extends Controller
                 break;
         }
 */
-        $proyectos = Proyecto::orderBy('id','desc')->where('activo',1)->paginate(1,['*'],'pag_proyectos',$pagina);
-        $historicos = Proyecto::orderBy('id','desc')->where('activo',0)->paginate(1,['*'],'pag_proyectos_hist',$pagina_h);
+        $proyectos = Proyecto::orderBy('id','desc')->where('activo',1)->paginate(5,['*'],'pag_proyectos',$pagina);
+        $historicos = Proyecto::orderBy('id','desc')->where('activo',0)->paginate(5,['*'],'pag_proyectos_hist',$pagina_h);
         return view('Proyectos.index',compact('proyectos','historicos'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Muestre el formulario para crear un nuevo Proyecto
      */
     public function create( Proyecto $proyectos)
     {
@@ -73,14 +77,12 @@ class ProyectoControler extends Controller
         $prestadores = User::where("rol","Aspirante")->get();
         $responsables = User::where("rol","Auxiliar")->get();
         $cartas = User::where("carta")->get();
-        return view('Proyectos.create',compact('usuarios','proyectos','prestadores','responsables','cartas'));
+        //$uwus = User::select("numcontrol")->get();
+        return view('Proyectos.create',compact('usuarios','proyectos','prestadores','responsables','cartas','uwus'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Guarda un Proyecto recién creado en el almacenamiento.
      */
     public function store(Request $request)
     {
@@ -105,11 +107,8 @@ class ProyectoControler extends Controller
     
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+   /**
+     * Mostrar el Proyecto especificado.
      */
     public function show($id, Proyecto $proyecto)
     {
@@ -134,12 +133,8 @@ class ProyectoControler extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Muestra el formulario para editar el Proyecto especificado.
      */
-
     public function edit($id)
     {
         $proyecto = Proyecto::find($id);
@@ -147,12 +142,8 @@ class ProyectoControler extends Controller
         return view('Proyectos.edit',compact('proyecto','usuarios'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+   /**
+     * Actualiza el Proyecto especificado en el almacenamiento.
      */
     public function update(Request $request, $id)
     {
@@ -165,12 +156,8 @@ class ProyectoControler extends Controller
 
         return redirect("/Proyectos")->with('mensaje','Proyecto modificado correctamente');
     }
-
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Elimina especificamente el Usuario deseado.    
      */
     public function destroy($id)
     {
@@ -183,8 +170,5 @@ class ProyectoControler extends Controller
         }
     }
 
-    public function activo()
-    {
-        
-    }
+
 }

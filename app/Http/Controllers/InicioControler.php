@@ -13,6 +13,17 @@ use App\Models\Horario;
 
 class InicioControler extends Controller
 {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Controlador Inicio
+    |--------------------------------------------------------------------------
+    |
+    | Este controlador maneja el redireccionamiento del usuario al iniciar sesión en el sistema
+
+    | ,.
+    |
+    */
     public function __construct()
     {
         $this->middleware('inicio');
@@ -27,13 +38,13 @@ class InicioControler extends Controller
                 $proyectos = Proyecto::where('activo',1)->get();
                 $historicos= Proyecto::where('activo',0)->get();
                 $horarios = Horario::all();
-                return  view('tablero',compact('usuarios','proyectos','horarios','historicos'));
+                return  view('inicio',compact('usuarios','proyectos','horarios','historicos'));
                 break;
             case 'Prestador':
                 
                 
                 $proyectos = Proyecto::where('prestador_id',$user->id)->get();
-                return  view('tablero',compact('usuarios','proyectos','horarios','historicos'));
+                return  view('inicio',compact('usuarios','proyectos','horarios','historicos'));
                 break;
             case 'Auxiliar':
                 $usuarios = User::all();
@@ -44,14 +55,14 @@ class InicioControler extends Controller
                 $usuarios = User::all();
                 $proyectos = Proyecto::all();
                 $horarios = Horario::all();
-                return  view('tablero',compact('usuarios','proyectos','horarios'));
+                return  view('inicio',compact('usuarios','proyectos','horarios'));
                 break;
             case 'Aspirante':
                 $usuarios = User::all();
                 $proyectos = Proyecto::all();
-                return view('tablero',compact('usuarios','proyectos'));
+                return view('inicio',compact('usuarios','proyectos'));
             default:
-                return view('tablero',compact('usuarios','proyectos'));
+                return view('inicio',compact('usuarios','proyectos'));
                 break;
         }
     }

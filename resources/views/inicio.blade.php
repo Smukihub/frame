@@ -1,18 +1,10 @@
 @extends('layouts.app')
 
-<script src="/bootstrap-4.5.3-dist/js/jquery-3.5.1.min.js"></script>
-<script src="/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.js"></script>
-
-<script src="/bootstrap-4.5.3-dist/js/jquery-3.5.1.min.js"></script>
-<script src="/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 @section('content')
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Tablero</li>
+    <li class="breadcrumb-item active" aria-current="page">Inicio</li>
       
     </ol>
   </nav>
@@ -26,21 +18,29 @@
                   <a href="/Usuarios" style="color:black">Lista de Usuarios</a>
                 </h4>              
               </div>
-              <div class="card-body" >            
-                <table class="table table-hover"  text-center="">
-                  <tbody>                  
-                    @forelse ($usuarios as $usuario)
-                      <tr class="table table-sm table-bordered" >
-                        <td scope="row">{{$usuario->nombre}}</th>
-                        <td scope="row">{{$usuario->rol}}</th>                    
-                      </tr>                
-                    @empty
+              <div class="card-body" >   
+                <div style="width:200px; height:300px; overflow:auto;"> 
+                  <table class="table table-hover"  text-center="">
+                    <thead class="table table-sm table-bordered">
                       <tr>
-                          <td colspan="3">Sin usuarios registrados</td>
+                        <th>Usuario</th>
+                        <th>Tipo</th>
                       </tr>
-                    @endforelse
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>                  
+                      @forelse ($usuarios as $usuario)
+                        <tr class="table table-sm table-bordered" >
+                          <td scope="row">{{$usuario->nombre}}</th>
+                          <td scope="row">{{$usuario->rol}}</th>                    
+                        </tr>                
+                      @empty
+                        <tr>
+                            <td colspan="3">Sin usuarios registrados</td>
+                        </tr>
+                      @endforelse
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>  
@@ -50,12 +50,12 @@
             <div class="card  shadow-sm">
               <div class="card-header">
                 <h4>
-                  <a href="/Horarios" style="color:black">Lista de Horarios</a>
+                  <a href="/Horarios" style="color:black">Horario General</a>
                 </h4>
               </div>
               <div class="card-body">
                 <div class="container">
-                  <table class="table table-hover table-bordered"  id="tbl-horario" >
+                  <table class="table table-sm"  id="tbl-horario" >
                     <thead>
                       <tr class="table table-sm table-bordered" >        
                         <th scope="row"class="bg-success ">Hora</th>
@@ -191,46 +191,52 @@
               </div>
               <div class="card-body">
                 <h3>Activos</h3>
-                <table class="table table-hover"  text-center="">
+                <div style="width:200px; height:250px; overflow:auto;"> 
+                  <table class="table table-hover"  text-center="">
                   
-                  <tbody>
-                  
-                    @forelse ($proyectos as $proyecto)
-                    <tr class="table table-sm table-bordered" >
+                    <tbody>
                     
-                      <td scope="row">{{$proyecto->nombre}}</th>
+                      @forelse ($proyectos as $proyecto)
+                      <tr class="table table-sm table-bordered" >
                       
-                    </tr>
-                  
-                    @empty
-                    <tr>
-                        <td colspan="3">Sin proyectos registrados</td>
-                    </tr>
-                    @endforelse
-                  
-                  </tbody>
-                </table>
+                        <td scope="row">{{$proyecto->nombre}}</th>
+                        
+                      </tr>
+                    
+                      @empty
+                      <tr>
+                          <td colspan="3">Sin proyectos registrados</td>
+                      </tr>
+                      @endforelse
+                    
+                    </tbody>
+                  </table>
+                </div>
+               
 
                 <h3>Antiguos</h3>
-                <table class="table table-hover"  text-center="">
+                <div style="width:200px; height:250px; overflow:auto;"> 
+                  <table class="table table-hover"  text-center="">
                   
-                  <tbody>
-                  
-                    @forelse ($historicos as $proyecto)
-                    <tr class="table table-sm table-bordered" >
+                    <tbody>
                     
-                      <td scope="row">{{$proyecto->nombre}}</th>
+                      @forelse ($historicos as $proyecto)
+                      <tr class="table table-sm table-bordered" >
                       
-                    </tr>
-                  
-                    @empty
-                    <tr>
-                        <td colspan="3">Sin proyectos registrados</td>
-                    </tr>
-                    @endforelse
-                  
-                  </tbody>
-                </table>
+                        <td scope="row">{{$proyecto->nombre}}</th>
+                        
+                      </tr>
+                    
+                      @empty
+                      <tr>
+                          <td colspan="3">Sin proyectos registrados</td>
+                      </tr>
+                      @endforelse
+                    
+                    </tbody>
+                  </table>
+                </div>
+                
 
               </div>
             </div>
@@ -241,8 +247,9 @@
         <br> 
         @can('prestador-jefe', Auth::user()) 
         <div class="container">
-          <div class="card-deck mb-3 text-center">
-
+         
+          <div class="card-deck mb-3 text-center ">
+          
             @foreach ($proyectos as $proyecto)
               <div class="card mb-4 shadow-sm">
                 <div class="card-header">

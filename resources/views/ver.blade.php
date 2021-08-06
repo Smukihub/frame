@@ -19,7 +19,6 @@
                 <div class="card-header">
                   <h4 class="my-0 font-weight-normal">
                   Proyecto - Horario
-                  <a class="btn btn-primary" href="/Proyectos" role="button">Volver</a>
                   </h4>
                   
                 </div>                  

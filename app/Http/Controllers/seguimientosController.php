@@ -10,6 +10,11 @@ use App\Models\Proyecto;
 
 class seguimientosController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('jefe-aux');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -89,20 +94,7 @@ class seguimientosController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Guarda un Historico recién creado en el almacenamiento.
      */
     public function store(Request $request, $id)
     {
@@ -148,49 +140,7 @@ class seguimientosController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, $id)
-    {
 
-
-        $historico = Historico::find($id);  
-        return view('Historicos.show',compact('historico'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         try {

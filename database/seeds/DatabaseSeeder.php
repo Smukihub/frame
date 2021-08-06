@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Sembrar la base de datos de la aplicación.
      *
      * @return void
      */

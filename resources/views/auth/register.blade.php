@@ -93,15 +93,7 @@
                             </div>  
                         
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <label for="telefono" >{{ __('Carta') }}</label>
-                                <input type="file" readonly class="form-control-plaintext" id="archivoInput" onchange="return validarExt()" class="form-control @error('carta') is-invalid @enderror " name="carta"  autocomplete="new-telefono">
-                                <div id="visorArchivo">
-                    
-                                </div>    
-                            </div>
-                        </div> 
+                       
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

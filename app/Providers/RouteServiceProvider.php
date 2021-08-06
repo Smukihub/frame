@@ -8,16 +8,16 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * This namespace is applied to your controller routes.
+     * Este espacio de nombres se aplica a las rutas de su controlador.
      *
-     * In addition, it is set as the URL generator's root namespace.
+     *  Además, se establece como el espacio de nombres raíz del generador de URL.
      *
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
 
     /**
-     * The path to the "home" route for your application.
+     * La ruta a la ruta "de inicio" de su aplicación.
      *
      * @var string
      */

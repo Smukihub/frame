@@ -10,6 +10,11 @@ use App\Models\Horario;
 class VerControler extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('jefe-aux');
+    }
+
     /**
      * Se utiliza para ....
      *

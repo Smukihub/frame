@@ -8,11 +8,9 @@ use Closure;
 class RolMiddlewere
 {
     /**
-     * Handle an incoming request.
+     * Obtiene la ruta a la que se debe redirigir al usuario cuando no esté autenticado,
+     * verifica si el usuario es especificamente entre tipo Jefe, Auxiliar y Prestador.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
      */
     public function handle($request, Closure $next)
     {

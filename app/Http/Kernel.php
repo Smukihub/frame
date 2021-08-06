@@ -7,9 +7,9 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
     /**
-     * The application's global HTTP middleware stack.
+     * Pila de middleware HTTP global de la aplicación.
      *
-     * These middleware are run during every request to your application.
+     * Estos middleware se ejecutan durante cada solicitud a su aplicación.
      *
      * @var array
      */
@@ -24,7 +24,8 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * The application's route middleware groups.
+     * Los grupos de middleware de ruta de la aplicación.
+
      *
      * @var array
      */
@@ -46,14 +47,15 @@ class Kernel extends HttpKernel
     ];
 
     /**
-     * The application's route middleware.
-     *
-     * These middleware may be assigned to groups or used individually.
+     * El middleware de ruta de la aplicación.
+     * 
+     * Estos middleware pueden asignarse a grupos o usarse individualmente.
      *
      * @var array
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'jefe-aux' => \App\Http\Middleware\JefeAuxMiddleware::class,
         'rol' => \App\Http\Middleware\RolMiddlewere::class,
         'jefe' => \App\Http\Middleware\JefeMiddlewere::class,
         'inicio' => \App\Http\Middleware\InicioMiddlewere::class,

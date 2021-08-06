@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 class UserSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Ejecute la semilla de Usurio de la base de datos.
      *
      * @return void
      */
@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             'activo' => 1 ,
             'status' => 0 ,
             'rol' => "Jefe"  ,
+            
         ]);
         DB::table('users')->insert([
             'nombre' => "Aux1",
